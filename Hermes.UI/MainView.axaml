@@ -1,0 +1,21 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:Hermes.Application.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:DataType="vm:MainViewModel"
+             x:Class="Hermes.UI.MainView">
+    
+    <Design.DataContext>
+        <vm:MainViewModel/>
+    </Design.DataContext>
+    
+    <Grid ColumnDefinitions="1*, 6*, 1*" RowDefinitions="40" VerticalAlignment="Top" Margin="50, 10, 50, 0">
+        <ComboBox Grid.Column="0" Grid.Row="0" HorizontalAlignment="Stretch" ItemsSource="{Binding Methods}" DisplayMemberBinding="{Binding Value}" SelectedItem="{Binding SelectedMethod}" 
+                  SelectedIndex="{Binding SelectedIndex}" BorderThickness="1" CornerRadius="4" Margin="0, 10, 0, 0" FontSize="12" />
+        <TextBox Grid.Column="1" Grid.Row="0" Watermark="URL" Text="{Binding RequestUrl}" BorderThickness="1" CornerRadius="4" Margin="2, 10" FontSize="14" />
+        <Button Grid.Column="2" Grid.Row="0" HorizontalAlignment="Left" Command="{Binding SendRequestCommand}" Content="Send" BorderThickness="1" Height="32" CornerRadius="4" Background="{StaticResource Accent}" />
+    </Grid>
+    
+</UserControl>

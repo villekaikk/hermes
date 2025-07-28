@@ -1,0 +1,58 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:helpers="clr-namespace:Hermes.UI.Helpers"
+             x:Class="Hermes.UI.App"
+             RequestedThemeVariant="Dark">
+             <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
+    
+     <Application.Resources>
+         <ResourceDictionary>
+             <ResourceDictionary.MergedDictionaries>
+                 <MergeResourceInclude Source="/Resources/Colors.axaml" />
+             </ResourceDictionary.MergedDictionaries>
+         </ResourceDictionary>
+     </Application.Resources>
+    
+     <Application.DataTemplates>
+         <helpers:ViewLocator/>
+     </Application.DataTemplates>
+             
+    <Application.Styles>
+        <FluentTheme>
+            <FluentTheme.Palettes >
+                <ColorPaletteResources x:Key="Dark"
+                                                
+                                       RegionColor="{StaticResource Background}"
+                                       Accent="{StaticResource Accent}"
+                                       AltHigh="Black"
+                                       AltLow="Black"
+                                       AltMediumLow="{StaticResource Base}"
+                                                
+                                       BaseMediumLow="{StaticResource Base}" 
+                                       BaseHigh="{StaticResource OffWhite}"
+                                       BaseLow="{StaticResource Base}"
+                                       BaseMedium="{StaticResource Primary}"
+                                       BaseMediumHigh="{StaticResource OffWhite}" 
+                                                
+                                       ChromeAltLow="{StaticResource OffWhite}"
+                                       ChromeBlackHigh="Black"
+                                       ChromeBlackLow="{StaticResource OffWhite}"
+                                       ChromeBlackMedium="Black"
+                                       ChromeBlackMediumLow="Black"
+                                       ChromeDisabledHigh="{StaticResource Background}"
+                                       ChromeDisabledLow="{StaticResource Accent}"
+                                       ChromeGray="{StaticResource Base}"
+                                       ChromeHigh="{StaticResource Base}"
+                                       ChromeLow="{StaticResource Primary}"
+                                       ChromeMedium="{StaticResource Base}"
+                                       ChromeMediumLow="{StaticResource Base}"
+                                       ChromeWhite="{StaticResource OffWhite}"
+                                       
+                                       ListLow="{StaticResource Base}"
+                                       ListMedium="{StaticResource Background}"
+                />
+            </FluentTheme.Palettes>
+        </FluentTheme>
+    </Application.Styles>
+
+</Application>
