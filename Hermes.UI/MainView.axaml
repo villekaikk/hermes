@@ -11,7 +11,7 @@
         <vm:MainViewModel/>
     </Design.DataContext>
     
-    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Height="50">
         <ComboBox VerticalAlignment="Center" ItemsSource="{Binding Methods}" DisplayMemberBinding="{Binding Value}" SelectedItem="{Binding SelectedMethod}" 
                   SelectedIndex="{Binding SelectedIndex}" BorderThickness="1" CornerRadius="4" FontSize="12" Width="100" />
         <TextBox VerticalAlignment="Center" Watermark="URL" Text="{Binding RequestUrl}" BorderThickness="1" CornerRadius="4" Margin="2, 0" FontSize="14" Width="560" />

@@ -1,4 +1,3 @@
-using Avalonia.Markup.Xaml;
 using Avalonia.ReactiveUI;
 using Hermes.Application.ViewModels;
 
@@ -11,8 +10,4 @@ public partial class MainView : ReactiveUserControl<MainViewModel>
         InitializeComponent();
     }
     
-    private void InitializeComponent()
-    {
-        AvaloniaXamlLoader.Load(this);
-    }
 }
