@@ -2,10 +2,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:vm="using:Hermes.Application.ViewModels"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:vm="clr-namespace:Hermes.Application.ViewModels.Views;assembly=Hermes.Application"
+             mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="450"
              x:DataType="vm:MainViewModel"
-             x:Class="Hermes.UI.MainView">
+             x:Class="Hermes.UI.Views.MainView">
     
     <Design.DataContext>
         <vm:MainViewModel/>
@@ -14,7 +14,7 @@
     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Height="50">
         <ComboBox VerticalAlignment="Center" ItemsSource="{Binding Methods}" DisplayMemberBinding="{Binding Value}" SelectedItem="{Binding SelectedMethod}" 
                   SelectedIndex="{Binding SelectedIndex}" BorderThickness="1" CornerRadius="4" FontSize="12" Width="100" />
-        <TextBox VerticalAlignment="Center" Watermark="URL" Text="{Binding RequestUrl}" BorderThickness="1" CornerRadius="4" Margin="2, 0" FontSize="14" Width="560" />
+        <TextBox VerticalAlignment="Center" Watermark="URL" Text="{Binding RequestUrl}" BorderThickness="1" CornerRadius="4" Margin="2, 0" FontSize="14" Width="600" />
         <Button HorizontalAlignment="Left" VerticalAlignment="Center" Command="{Binding SendRequestCommand}" Content="Send" BorderThickness="1" Height="32" CornerRadius="4" Background="{StaticResource Accent}" Width="60" />
     </StackPanel>
     

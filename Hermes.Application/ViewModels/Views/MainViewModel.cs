@@ -1,15 +1,20 @@
 using System.Reactive;
 using Hermes.Application.Interfaces;
-using ReactiveUI;
 using Hermes.Domain.Models;
-using Microsoft.Extensions.DependencyInjection;
+using ReactiveUI;
 
-namespace Hermes.Application.ViewModels;
+namespace Hermes.Application.ViewModels.Views;
 
 public class MainViewModel : ReactiveObject
 {
-    public ReactiveCommand<Unit, Unit> SendRequestCommand { get; }
     
+    private int _selectedIndex = 0;
+    private string _requestUrl = string.Empty;
+    private RequestMethodOption _selectedMethod = null!;
+    private readonly IRequestExecutionService _requestExecutor = null!;
+
+    public ReactiveCommand<Unit, Unit> SendRequestCommand { get; } = null!;
+
     public string RequestUrl
     {
         get => _requestUrl;
@@ -30,22 +35,19 @@ public class MainViewModel : ReactiveObject
         set => this.RaiseAndSetIfChanged(ref _selectedMethod, value);
     }
 
-    public MainViewModel(IRequestExecutionService requestExecutionService)
+    public MainViewModel() { }
+
+    public MainViewModel(IRequestExecutionService? requestExecutionService)
     {
         SendRequestCommand = ReactiveCommand.CreateFromTask(SendRequest);
         SendRequestCommand.ThrownExceptions.Subscribe(ex => Console.WriteLine($"Exception thrown: {ex}"));
-        
-        _requestExecutor =  requestExecutionService;
+
+        _requestExecutor = requestExecutionService ?? throw new ArgumentNullException(nameof(requestExecutionService));
     }
 
     private async Task SendRequest(CancellationToken token)
     {
         var options = new RequestOptions(SelectedMethod, RequestUrl);
-        await this._requestExecutor.ExecuteRequestAsync(options, token);
+        await _requestExecutor.ExecuteRequestAsync(options, token)!;
     }
-
-    private int _selectedIndex = 0;
-    private string _requestUrl = string.Empty;
-    private RequestMethodOption _selectedMethod = null!;
-    private readonly IRequestExecutionService _requestExecutor;
 }

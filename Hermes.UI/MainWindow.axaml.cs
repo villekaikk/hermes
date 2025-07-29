@@ -1,5 +1,5 @@
 using Avalonia.ReactiveUI;
-using Hermes.Application.ViewModels;
+using Hermes.Application.ViewModels.Views;
 
 namespace Hermes.UI;
 

@@ -3,7 +3,7 @@ using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using Avalonia.ReactiveUI;
 using Hermes.Application;
-using Hermes.Application.ViewModels;
+using Hermes.Application.ViewModels.Views;
 using Hermes.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -16,7 +16,7 @@ namespace Hermes.UI;
 public partial class App : Avalonia.Application
 {
     private IServiceProvider Services => _host.Services;
-    private IHost _host;
+    private IHost _host = null!;
     
     public override void Initialize()
     {

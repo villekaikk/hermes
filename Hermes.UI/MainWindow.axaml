@@ -2,9 +2,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:vm="using:Hermes.Application.ViewModels"
+        xmlns:vm="clr-namespace:Hermes.Application.ViewModels.Views;assembly=Hermes.Application"
         x:DataType="vm:MainWindowViewModel"
-        mc:Ignorable="d" d:DesignWidth="1024" d:DesignHeight="600"
+        mc:Ignorable="d" d:DesignWidth="1024" d:DesignHeight="640"
         x:Class="Hermes.UI.MainWindow"
         Title="Hermes">
 
@@ -12,8 +12,9 @@
         <vm:MainWindowViewModel />
     </Design.DataContext>
 
-    <Grid RowDefinitions="Auto, Auto, Auto">
-        <ContentControl Content="{Binding MainViewModel}" Grid.Row="0" />
+    <Grid RowDefinitions="Auto, Auto, Auto" ColumnDefinitions="2*, 6*" Margin="6, 6, 20, 6">
+        <ContentControl Content="{Binding MainViewModel}" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left"/>
+        <ContentControl Content="{Binding RequestInfoViewModel}" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" />
     </Grid>
 
 </Window>
