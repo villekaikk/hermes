@@ -12,6 +12,8 @@
         <vm:MainWindowViewModel />
     </Design.DataContext>
 
-    <ContentControl Content="{Binding MainViewModel}" />
+    <Grid RowDefinitions="45, Auto, Auto">
+        <ContentControl Content="{Binding MainViewModel}" Grid.Row="0" />
+    </Grid>
 
 </Window>

@@ -32,8 +32,8 @@ public partial class App : Avalonia.Application
                 var resolver = Locator.CurrentMutable;
                 resolver.InitializeSplat();
       
-                Locator.CurrentMutable.RegisterConstant(new AvaloniaActivationForViewFetcher(), typeof(IActivationForViewFetcher));
-                Locator.CurrentMutable.RegisterConstant(new AutoDataTemplateBindingHook(), typeof(IPropertyBindingHook));
+                Locator.CurrentMutable.RegisterConstant<IActivationForViewFetcher>(new AvaloniaActivationForViewFetcher());
+                Locator.CurrentMutable.RegisterConstant<IPropertyBindingHook>(new AutoDataTemplateBindingHook());
                 RxApp.MainThreadScheduler = AvaloniaScheduler.Instance;
       
                 services

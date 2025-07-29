@@ -11,11 +11,11 @@
         <vm:MainViewModel/>
     </Design.DataContext>
     
-    <Grid ColumnDefinitions="1*, 6*, 1*" RowDefinitions="40" VerticalAlignment="Top" Margin="50, 10, 50, 0">
-        <ComboBox Grid.Column="0" Grid.Row="0" HorizontalAlignment="Stretch" ItemsSource="{Binding Methods}" DisplayMemberBinding="{Binding Value}" SelectedItem="{Binding SelectedMethod}" 
-                  SelectedIndex="{Binding SelectedIndex}" BorderThickness="1" CornerRadius="4" Margin="0, 10, 0, 0" FontSize="12" />
-        <TextBox Grid.Column="1" Grid.Row="0" Watermark="URL" Text="{Binding RequestUrl}" BorderThickness="1" CornerRadius="4" Margin="2, 10" FontSize="14" />
-        <Button Grid.Column="2" Grid.Row="0" HorizontalAlignment="Left" Command="{Binding SendRequestCommand}" Content="Send" BorderThickness="1" Height="32" CornerRadius="4" Background="{StaticResource Accent}" />
-    </Grid>
+    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+        <ComboBox VerticalAlignment="Center" ItemsSource="{Binding Methods}" DisplayMemberBinding="{Binding Value}" SelectedItem="{Binding SelectedMethod}" 
+                  SelectedIndex="{Binding SelectedIndex}" BorderThickness="1" CornerRadius="4" FontSize="12" Width="100" />
+        <TextBox VerticalAlignment="Center" Watermark="URL" Text="{Binding RequestUrl}" BorderThickness="1" CornerRadius="4" Margin="2, 0" FontSize="14" Width="560" />
+        <Button HorizontalAlignment="Left" VerticalAlignment="Center" Command="{Binding SendRequestCommand}" Content="Send" BorderThickness="1" Height="32" CornerRadius="4" Background="{StaticResource Accent}" Width="60" />
+    </StackPanel>
     
 </UserControl>
