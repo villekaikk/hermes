@@ -39,10 +39,11 @@ public class MainViewModel : ReactiveObject
 
     public MainViewModel(IRequestExecutionService? requestExecutionService)
     {
+        _requestExecutor = requestExecutionService ?? throw new ArgumentNullException(nameof(requestExecutionService));
+        
         SendRequestCommand = ReactiveCommand.CreateFromTask(SendRequest);
         SendRequestCommand.ThrownExceptions.Subscribe(ex => Console.WriteLine($"Exception thrown: {ex}"));
 
-        _requestExecutor = requestExecutionService ?? throw new ArgumentNullException(nameof(requestExecutionService));
     }
 
     private async Task SendRequest(CancellationToken token)

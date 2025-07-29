@@ -24,8 +24,8 @@
                                                 
                                        RegionColor="{StaticResource Background}"
                                        Accent="{StaticResource Accent}"
-                                       AltHigh="Black"
-                                       AltLow="Black"
+                                       AltHigh="{StaticResource Base}"
+                                       AltLow="{StaticResource Base}"
                                        AltMediumLow="{StaticResource Base}"
                                                 
                                        BaseMediumLow="{StaticResource Base}" 
@@ -35,10 +35,10 @@
                                        BaseMediumHigh="{StaticResource OffWhite}" 
                                                 
                                        ChromeAltLow="{StaticResource OffWhite}"
-                                       ChromeBlackHigh="Black"
+                                       ChromeBlackHigh="{StaticResource Base}"
                                        ChromeBlackLow="{StaticResource OffWhite}"
-                                       ChromeBlackMedium="Black"
-                                       ChromeBlackMediumLow="Black"
+                                       ChromeBlackMedium="{StaticResource Base}"
+                                       ChromeBlackMediumLow="{StaticResource Base}"
                                        ChromeDisabledHigh="{StaticResource Background}"
                                        ChromeDisabledLow="{StaticResource Accent}"
                                        ChromeGray="{StaticResource Base}"
@@ -53,6 +53,7 @@
                 />
             </FluentTheme.Palettes>
         </FluentTheme>
+        <StyleInclude Source="avares://Avalonia.Controls.DataGrid/Themes/Fluent.xaml"></StyleInclude>
     </Application.Styles>
 
 </Application>

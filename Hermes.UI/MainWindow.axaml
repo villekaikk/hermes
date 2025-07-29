@@ -12,9 +12,12 @@
         <vm:MainWindowViewModel />
     </Design.DataContext>
 
-    <Grid RowDefinitions="Auto, Auto, Auto" ColumnDefinitions="2*, 6*" Margin="6, 6, 20, 6">
-        <ContentControl Content="{Binding MainViewModel}" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left"/>
-        <ContentControl Content="{Binding RequestInfoViewModel}" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" />
+    <Grid RowDefinitions="Auto, *, *" ColumnDefinitions="*, 3*" Margin="6" RowSpacing="4" ColumnSpacing="4" >
+        <Border Grid.Row="0" Grid.Column="0" Grid.RowSpan="3"  BorderBrush="{StaticResource Accent}" BorderThickness="1" />
+        <ContentControl Content="{Binding MainViewModel}" Grid.Row="0" Grid.Column="1" />
+        <ContentControl Content="{Binding RequestInfoViewModel}" Grid.Row="1" Grid.Column="1" />
+        <ContentControl Content="{Binding RequestInfoViewModel}" Grid.Row="2" Grid.Column="1" />
+        <Border Grid.Row="2" Grid.Column="1" BorderBrush="{StaticResource Accent}" BorderThickness="1" />
     </Grid>
 
 </Window>

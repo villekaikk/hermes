@@ -1,3 +1,3 @@
 namespace Hermes.Domain.Models;
 
-public class RequestHeader(string name, string value,  bool enabled) : RequestListOption(name, value, enabled) { }
+public class RequestHeader(string key, string value,  bool enabled) : RequestListOption(key, value, enabled) { }

@@ -5,10 +5,10 @@ namespace Hermes.Application.ViewModels.Models;
 
 public partial class RequestListOptionViewModel : ReactiveObject
 {
-    public string Name
+    public string Key
     {
-        get => _name;
-        set => this.RaiseAndSetIfChanged(ref _name, value);
+        get => _key;
+        set => this.RaiseAndSetIfChanged(ref _key, value);
     }
 
     public string Value
@@ -27,7 +27,7 @@ public partial class RequestListOptionViewModel : ReactiveObject
 
     public RequestListOptionViewModel(RequestListOption listOption)
     {
-        Name = listOption.Name;
+        Key = listOption.Key;
         Value = listOption.Value;
         Enabled = listOption.Enabled;
         item = listOption;
@@ -35,7 +35,7 @@ public partial class RequestListOptionViewModel : ReactiveObject
 
     public RequestListOption GetListOption() => item;
 
-    private string _name = string.Empty!;
+    private string _key = string.Empty!;
     private string _value  = string.Empty!;
     private bool _enabled  = false!;
     private RequestListOption item = null!;

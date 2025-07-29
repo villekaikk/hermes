@@ -3,7 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:Hermes.Application.ViewModels.Views;assembly=Hermes.Application"
-             mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="400"
+             mc:Ignorable="d" d:DesignWidth="1024" d:DesignHeight="400"
              x:Class="Hermes.UI.Views.RequestInfoView"
              x:DataType="vm:RequestInfoViewModel">
     
@@ -11,38 +11,30 @@
         <vm:RequestInfoViewModel/>
     </Design.DataContext>
     
-    <Border BorderBrush="{StaticResource Accent}" BorderThickness="1" >
-        <TabControl Width="760" Height="400" HorizontalAlignment="Left" VerticalAlignment="Top">
+    <Border BorderBrush="{StaticResource Accent}" BorderThickness="0" CornerRadius="4">
+        <TabControl>
             <!-- Parameters -->
-            <TabItem Header="Params" FontSize="12" >
-                <ItemsControl ItemsSource="{Binding Parameters}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <Grid ColumnDefinitions="250, 250, 20">
-                                <TextBox Grid.Column="0" Watermark="name" BorderBrush="{StaticResource Accent}" BorderThickness="1" Text="{Binding Name}" FontSize="10" Padding="4, 8" Margin="0, 0, 5, 0" IsEnabled="{Binding Enabled}" />
-                                <TextBox Grid.Column="1" Watermark="value" Text="{Binding Value}" BorderBrush="{StaticResource Accent}" BorderThickness="1" FontSize="10" Padding="4, 8" Margin="0, 0, 10, 0" IsEnabled="{Binding Enabled}" />
-                                <CheckBox Grid.Column="2" IsChecked="{Binding Enabled}" />
-                            </Grid>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
+            <TabItem Header="Params" FontSize="12">
+                <DataGrid ItemsSource="{Binding Parameters}" GridLinesVisibility="All" BorderThickness="0,1,0,0" BorderBrush="{StaticResource Accent}" FontSize="12" 
+                          CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserSortColumns="False" >
+                    <DataGrid.Columns>
+                        <DataGridCheckBoxColumn Width="Auto" Binding="{Binding Enabled}" />
+                        <DataGridTextColumn Header="Key" Width="*" Binding="{Binding Key}" CellStyleClasses="" />
+                        <DataGridTextColumn Header="Value" Width="*" Binding="{Binding Value}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
             </TabItem>
             
             <!-- Headers -->
             <TabItem Header="Headers" FontSize="12">
-                <ItemsControl ItemsSource="{Binding Headers}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Border Margin="1">
-                            <Grid ColumnDefinitions="250, 250, 20">
-                                <TextBox Grid.Column="0" BorderBrush="{StaticResource Accent}" BorderThickness="1" Text="{Binding Name}" FontSize="10" Margin="0, 0, 5, 0" Width="240" IsEnabled="{Binding Enabled, Mode=TwoWay}" />
-                                <TextBox Grid.Column="1" Text="{Binding Value}" BorderBrush="{StaticResource Accent}" BorderThickness="1" FontSize="10" Margin="0, 0, 10, 0" Width="240" IsEnabled="{Binding Enabled, Mode=TwoWay}" />
-                                <CheckBox Grid.Column="2" IsChecked="{Binding Enabled}" ></CheckBox>
-                            </Grid>
-                        </Border>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-                </ItemsControl>
+                <DataGrid ItemsSource="{Binding Parameters}" GridLinesVisibility="All" BorderThickness="0,1,0,0" BorderBrush="{StaticResource Accent}" FontSize="12" 
+                          CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserSortColumns="False" >
+                    <DataGrid.Columns>
+                        <DataGridCheckBoxColumn Width="Auto" Binding="{Binding Enabled}" />
+                        <DataGridTextColumn Header="Key" Width="*" Binding="{Binding Key}" CellStyleClasses="" />
+                        <DataGridTextColumn Header="Value" Width="*" Binding="{Binding Value}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
             </TabItem>
         </TabControl>
     </Border>

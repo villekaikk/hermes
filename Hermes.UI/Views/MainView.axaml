@@ -3,7 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:Hermes.Application.ViewModels.Views;assembly=Hermes.Application"
-             mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="450"
+             mc:Ignorable="d" d:DesignWidth="1024" d:DesignHeight="640"
              x:DataType="vm:MainViewModel"
              x:Class="Hermes.UI.Views.MainView">
     
@@ -11,11 +11,13 @@
         <vm:MainViewModel/>
     </Design.DataContext>
     
-    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Height="50">
-        <ComboBox VerticalAlignment="Center" ItemsSource="{Binding Methods}" DisplayMemberBinding="{Binding Value}" SelectedItem="{Binding SelectedMethod}" 
-                  SelectedIndex="{Binding SelectedIndex}" BorderThickness="1" CornerRadius="4" FontSize="12" Width="100" />
-        <TextBox VerticalAlignment="Center" Watermark="URL" Text="{Binding RequestUrl}" BorderThickness="1" CornerRadius="4" Margin="2, 0" FontSize="14" Width="600" />
-        <Button HorizontalAlignment="Left" VerticalAlignment="Center" Command="{Binding SendRequestCommand}" Content="Send" BorderThickness="1" Height="32" CornerRadius="4" Background="{StaticResource Accent}" Width="60" />
-    </StackPanel>
+    <!-- <StackPanel Orientation="Horizontal" Height="50" > -->
+    <Grid RowDefinitions="Auto" ColumnDefinitions="Auto, *, Auto" ColumnSpacing="5" >
+        <ComboBox Grid.Row="0" Grid.Column="0" ItemsSource="{Binding Methods}" DisplayMemberBinding="{Binding Value}" SelectedItem="{Binding SelectedMethod}" 
+                  SelectedIndex="{Binding SelectedIndex}" BorderThickness="1" CornerRadius="4" FontSize="12" MinWidth="100" Margin="0, 1, 0, 0" />
+        <TextBox Grid.Row="0" Grid.Column="1" Watermark="URL" Text="{Binding RequestUrl}" BorderThickness="1" CornerRadius="4" FontSize="14" MaxHeight="32" />
+        <Button Grid.Row="0" Grid.Column="2" Command="{Binding SendRequestCommand}" Content="Send" BorderThickness="1" CornerRadius="4" Background="{StaticResource Accent}" Height="34" />
+    </Grid>
+    <!-- </StackPanel> -->
     
 </UserControl>
