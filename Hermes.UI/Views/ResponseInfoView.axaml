@@ -1,0 +1,18 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:Hermes.Application.ViewModels.Views;assembly=Hermes.Application"
+             mc:Ignorable="d" d:DesignWidth="1024" d:DesignHeight="400"
+             x:Class="Hermes.UI.Views.ResponseInfoView"
+             x:DataType="vm:ResponseInfoViewModel">
+    
+    <Design.DataContext>
+        <vm:ResponseInfoViewModel/>
+    </Design.DataContext>
+    
+    <Grid>
+        <TextBlock>yo</TextBlock>
+    </Grid>
+    
+</UserControl>

@@ -17,10 +17,10 @@ public partial class RequestListOptionViewModel : ReactiveObject
         set => this.RaiseAndSetIfChanged(ref _value, value);
     }
 
-    public bool Enabled
+    public bool Active
     {
-        get => _enabled;
-        set => this.RaiseAndSetIfChanged(ref _enabled, value);
+        get => _active;
+        set => this.RaiseAndSetIfChanged(ref _active, value);
     }
     
     public RequestListOptionViewModel() {}
@@ -29,7 +29,7 @@ public partial class RequestListOptionViewModel : ReactiveObject
     {
         Key = listOption.Key;
         Value = listOption.Value;
-        Enabled = listOption.Enabled;
+        Active = listOption.Active;
         item = listOption;
     }
 
@@ -37,6 +37,6 @@ public partial class RequestListOptionViewModel : ReactiveObject
 
     private string _key = string.Empty!;
     private string _value  = string.Empty!;
-    private bool _enabled  = false!;
+    private bool _active  = false!;
     private RequestListOption item = null!;
 }

@@ -3,6 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:Hermes.Application.ViewModels.Views;assembly=Hermes.Application"
+             xmlns:model="clr-namespace:Hermes.Application.ViewModels.Models;assembly=Hermes.Application"
              mc:Ignorable="d" d:DesignWidth="1024" d:DesignHeight="400"
              x:Class="Hermes.UI.Views.RequestInfoView"
              x:DataType="vm:RequestInfoViewModel">
@@ -17,10 +18,47 @@
             <TabItem Header="Params" FontSize="12">
                 <DataGrid ItemsSource="{Binding Parameters}" GridLinesVisibility="All" BorderThickness="0,1,0,0" BorderBrush="{StaticResource Accent}" FontSize="12" 
                           CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserSortColumns="False" >
+                    
                     <DataGrid.Columns>
-                        <DataGridCheckBoxColumn Width="Auto" Binding="{Binding Enabled}" />
-                        <DataGridTextColumn Header="Key" Width="*" Binding="{Binding Key}" CellStyleClasses="" />
-                        <DataGridTextColumn Header="Value" Width="*" Binding="{Binding Value}"/>
+                        <!-- Checkbox-->
+                        <DataGridCheckBoxColumn Width="Auto" Binding="{Binding Active}"/>
+                        
+                        <!-- Keys column -->
+                        <DataGridTemplateColumn Width="*">
+                            <!-- Header -->
+                            <DataGridTemplateColumn.HeaderTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="Key" Foreground="{StaticResource Primary}" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.HeaderTemplate>
+                            
+                            <!-- Cell -->
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate DataType="model:RequestListOptionViewModel">
+                                    <TextBox Text="{Binding Key}" Background="{StaticResource Background}" Foreground="{StaticResource Accent}"
+                                             VerticalAlignment="Center" BorderThickness="0" Watermark="key..." IsEnabled="{Binding Active}" CornerRadius="0"/>
+                                </DataTemplate>                              
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        
+                        <!-- Values column-->
+                        <DataGridTemplateColumn Width="*">
+                            <!-- Header -->
+                            <DataGridTemplateColumn.HeaderTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="Value" Foreground="{StaticResource Primary}" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.HeaderTemplate>
+                            
+                            <!-- Cell -->
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate DataType="model:RequestListOptionViewModel">
+                                    <TextBox Text="{Binding Value}" Background="{StaticResource Background}" Foreground="{StaticResource Accent}" VerticalAlignment="Center" 
+                                             BorderThickness="0" Watermark="value..." IsEnabled="{Binding Active}" CornerRadius="0"/>
+                                </DataTemplate>                              
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        
                     </DataGrid.Columns>
                 </DataGrid>
             </TabItem>
@@ -29,10 +67,47 @@
             <TabItem Header="Headers" FontSize="12">
                 <DataGrid ItemsSource="{Binding Parameters}" GridLinesVisibility="All" BorderThickness="0,1,0,0" BorderBrush="{StaticResource Accent}" FontSize="12" 
                           CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserSortColumns="False" >
+                    
                     <DataGrid.Columns>
-                        <DataGridCheckBoxColumn Width="Auto" Binding="{Binding Enabled}" />
-                        <DataGridTextColumn Header="Key" Width="*" Binding="{Binding Key}" CellStyleClasses="" />
-                        <DataGridTextColumn Header="Value" Width="*" Binding="{Binding Value}"/>
+                        <!-- Checkbox-->
+                        <DataGridCheckBoxColumn Width="Auto" Binding="{Binding Active}"/>
+                        
+                        <!-- Keys column -->
+                        <DataGridTemplateColumn Width="*">
+                            <!-- Header -->
+                            <DataGridTemplateColumn.HeaderTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="Key" Foreground="{StaticResource Primary}" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.HeaderTemplate>
+                            
+                            <!-- Cell -->
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate DataType="model:RequestListOptionViewModel">
+                                    <TextBox Text="{Binding Key}" Background="{StaticResource Background}" Foreground="{StaticResource Accent}"
+                                             VerticalAlignment="Center" BorderThickness="0" Watermark="key..." IsEnabled="{Binding Active}" CornerRadius="0"/>
+                                </DataTemplate>                              
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        
+                        <!-- Values column-->
+                        <DataGridTemplateColumn Width="*">
+                            <!-- Header -->
+                            <DataGridTemplateColumn.HeaderTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="Value" Foreground="{StaticResource Primary}" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.HeaderTemplate>
+                            
+                            <!-- Cell -->
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate DataType="model:RequestListOptionViewModel">
+                                    <TextBox Text="{Binding Value}" Background="{StaticResource Background}" Foreground="{StaticResource Accent}" VerticalAlignment="Center" 
+                                             BorderThickness="0" Watermark="value..." IsEnabled="{Binding Active}" CornerRadius="0"/>
+                                </DataTemplate>                              
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        
                     </DataGrid.Columns>
                 </DataGrid>
             </TabItem>

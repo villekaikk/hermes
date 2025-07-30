@@ -1,6 +1,7 @@
 <ResourceDictionary xmlns="https://github.com/avaloniaui"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     
+    
     <!-- Color palette from https://coolors.co/palette/0d1b2a-1b263b-415a77-778da9-e0e1dd -->
     <Color x:Key="Background">#0D1B2A</Color>
     <Color x:Key="Base">#1B263B</Color>

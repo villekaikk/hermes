@@ -13,10 +13,16 @@
     </Design.DataContext>
 
     <Grid RowDefinitions="Auto, *, *" ColumnDefinitions="*, 3*" Margin="6" RowSpacing="4" ColumnSpacing="4" >
-        <Border Grid.Row="0" Grid.Column="0" Grid.RowSpan="3"  BorderBrush="{StaticResource Accent}" BorderThickness="1" />
+        <StackPanel Orientation="Horizontal">
+            <Ellipse Width="26" Height="26" Fill="{StaticResource Base}" Margin="6,0,10,0" VerticalAlignment="Center" />
+            <TextBlock FontSize="26" FontWeight="Bold" Margin="0,0,6,0" VerticalAlignment="Bottom" >Hermes</TextBlock>
+            <TextBlock FontSize="10" VerticalAlignment="Bottom" Text="{Binding Version}" />
+        </StackPanel>
+        <!-- TODO: collection view -->
+        <Border Grid.Row="1" Grid.Column="0" Grid.RowSpan="2"  BorderBrush="{StaticResource Accent}" BorderThickness="1" />
         <ContentControl Content="{Binding MainViewModel}" Grid.Row="0" Grid.Column="1" />
         <ContentControl Content="{Binding RequestInfoViewModel}" Grid.Row="1" Grid.Column="1" />
-        <ContentControl Content="{Binding RequestInfoViewModel}" Grid.Row="2" Grid.Column="1" />
+        <ContentControl Content="{Binding ResponseInfoViewModel}" Grid.Row="2" Grid.Column="1" />
         <Border Grid.Row="2" Grid.Column="1" BorderBrush="{StaticResource Accent}" BorderThickness="1" />
     </Grid>
 
