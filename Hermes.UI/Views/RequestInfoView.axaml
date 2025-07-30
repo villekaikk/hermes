@@ -16,8 +16,15 @@
        
         <!-- Bread -->
         <TabControl>
+            <TabControl.Styles>
+                <Style Selector="TabItem">
+                    <Setter Property="FontSize" Value="12" />
+                    <Setter Property="Margin" Value="0"/>
+                </Style>
+            </TabControl.Styles>
+            
             <!-- Parameters -->
-            <TabItem Header="Params" FontSize="13">
+            <TabItem Header="Params" >
                 <DataGrid ItemsSource="{Binding Parameters}" BorderThickness="0,1,0,0" Background="{StaticResource Background}">
                     <DataGrid.Columns>
                         <!-- Checkbox-->

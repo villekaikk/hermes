@@ -1,3 +1,4 @@
+using Avalonia.Markup.Xaml;
 using Avalonia.ReactiveUI;
 using Hermes.Application.ViewModels.Views;
 
@@ -7,6 +8,6 @@ public partial class ResponseInfoView : ReactiveUserControl<ResponseInfoViewMode
 {
     public ResponseInfoView()
     {
-        InitializeComponent();
+        AvaloniaXamlLoader.Load(this);
     }
 }

@@ -20,36 +20,36 @@
     <Application.Styles>
         <FluentTheme>
             <FluentTheme.Palettes >
-                <ColorPaletteResources x:Key="Dark"
-                                                
-                                       RegionColor="{StaticResource Background}"
-                                       Accent="{StaticResource Accent}"
-                                       AltHigh="{StaticResource Base}"
-                                       AltLow="{StaticResource Base}"
-                                       AltMediumLow="{StaticResource Base}"
-                                                
-                                       BaseMediumLow="{StaticResource Base}" 
-                                       BaseHigh="{StaticResource OffWhite}"
-                                       BaseLow="{StaticResource Base}"
-                                       BaseMedium="{StaticResource Primary}"
-                                       BaseMediumHigh="{StaticResource OffWhite}" 
-                                                
-                                       ChromeAltLow="{StaticResource OffWhite}"
-                                       ChromeBlackHigh="{StaticResource Base}"
-                                       ChromeBlackLow="{StaticResource OffWhite}"
-                                       ChromeBlackMedium="{StaticResource Base}"
-                                       ChromeBlackMediumLow="{StaticResource Base}"
-                                       ChromeDisabledHigh="{StaticResource Background}"
-                                       ChromeDisabledLow="{StaticResource Accent}"
-                                       ChromeGray="{StaticResource Base}"
-                                       ChromeHigh="{StaticResource Base}"
-                                       ChromeLow="{StaticResource Primary}"
-                                       ChromeMedium="{StaticResource Base}"
-                                       ChromeMediumLow="{StaticResource Base}"
-                                       ChromeWhite="{StaticResource OffWhite}"
-                                       
-                                       ListLow="{StaticResource Base}"
-                                       ListMedium="{StaticResource Background}"
+                <ColorPaletteResources
+                    x:Key="Dark"
+                    RegionColor="{StaticResource Background}"
+                    Accent="{StaticResource Accent}"
+                    AltHigh="{StaticResource Base}"
+                    AltLow="{StaticResource Base}"
+                    AltMediumLow="{StaticResource Base}"
+                        
+                    BaseMediumLow="{StaticResource Base}" 
+                    BaseHigh="{StaticResource OffWhite}"
+                    BaseLow="{StaticResource Base}"
+                    BaseMedium="{StaticResource Primary}"
+                    BaseMediumHigh="{StaticResource OffWhite}" 
+                        
+                    ChromeAltLow="{StaticResource OffWhite}"
+                    ChromeBlackHigh="{StaticResource Base}"
+                    ChromeBlackLow="{StaticResource OffWhite}"
+                    ChromeBlackMedium="{StaticResource Base}"
+                    ChromeBlackMediumLow="{StaticResource Base}"
+                    ChromeDisabledHigh="{StaticResource Background}"
+                    ChromeDisabledLow="{StaticResource Accent}"
+                    ChromeGray="{StaticResource Base}"
+                    ChromeHigh="{StaticResource Base}"
+                    ChromeLow="{StaticResource Primary}"
+                    ChromeMedium="{StaticResource Base}"
+                    ChromeMediumLow="{StaticResource Base}"
+                    ChromeWhite="{StaticResource OffWhite}"
+                   
+                   ListLow="{StaticResource Base}"
+                   ListMedium="{StaticResource Background}"
                 />
             </FluentTheme.Palettes>
         </FluentTheme>

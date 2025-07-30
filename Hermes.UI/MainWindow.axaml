@@ -24,7 +24,6 @@
         <ContentControl Content="{Binding MainViewModel}" Grid.Row="0" Grid.Column="1" />
         <ContentControl Content="{Binding RequestInfoViewModel}" Grid.Row="1" Grid.Column="1" />
         <ContentControl Content="{Binding ResponseInfoViewModel}" Grid.Row="2" Grid.Column="1" />
-        <Border Grid.Row="2" Grid.Column="1" BorderBrush="{StaticResource Accent}" BorderThickness="1" />
     </Grid>
 
 </Window>
