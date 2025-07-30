@@ -54,6 +54,7 @@
             </FluentTheme.Palettes>
         </FluentTheme>
         <StyleInclude Source="avares://Avalonia.Controls.DataGrid/Themes/Fluent.xaml"></StyleInclude>
+        <StyleInclude Source="/Resources/Theme/DataGridStyles.axaml"></StyleInclude>
     </Application.Styles>
 
 </Application>

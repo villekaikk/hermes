@@ -4,6 +4,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="clr-namespace:Hermes.Application.ViewModels.Views;assembly=Hermes.Application"
         x:DataType="vm:MainWindowViewModel"
+        Width="1024" Height="640"
         mc:Ignorable="d" d:DesignWidth="1024" d:DesignHeight="640"
         x:Class="Hermes.UI.MainWindow"
         Title="Hermes">

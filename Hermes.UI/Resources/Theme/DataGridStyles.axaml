@@ -1,0 +1,59 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Design.PreviewWith>
+        <Border Padding="20">
+            <DataGrid GridLinesVisibility="All">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Header"/>
+                    <DataGridTextColumn Header="Header2"/>
+                </DataGrid.Columns>
+                
+            </DataGrid>
+        </Border>
+    </Design.PreviewWith>
+
+    <!-- DataGrid styling -->
+    <Style Selector="DataGrid">
+        <Setter Property="BorderBrush" Value="{StaticResource Accent}" />
+        <Setter Property="GridLinesVisibility" Value="All" />
+        <Setter Property="CanUserReorderColumns" Value="False"/>
+        <Setter Property="CanUserResizeColumns" Value="False"/>
+        <Setter Property="CanUserSortColumns" Value="False"/>
+    </Style>
+    <Style Selector="DataGridColumnHeader">
+        <Style Selector="^ TextBlock">
+            <Setter Property="Foreground" Value="{StaticResource Primary}" />
+        </Style>
+    </Style> 
+    <Style Selector="DataGridCell">
+        <Style Selector="^ TextBox">
+            <Setter Property="Background" Value="{StaticResource Base}" />
+            <Setter Property="Foreground" Value="{StaticResource Accent}" />
+            <Setter Property="CornerRadius" Value="0" />
+            <Setter Property="BorderThickness" Value="0"/>
+        </Style>
+        <Style Selector="^ TextBox.active">
+            <Setter Property="Background" Value="{StaticResource Background}" />
+            <Setter Property="Foreground" Value="DimGray" />
+        </Style>
+        <Style Selector="^:selected">
+            <Setter Property="Background" Value="{StaticResource Base}" />
+            <Setter Property="BorderBrush" Value="{StaticResource Base}"/>
+            <Setter Property="Focusable" Value="False"/>
+        </Style>
+        <Style Selector="^:focus-visible /template/ Grid#FocusVisual">
+            <Setter Property="IsVisible" Value="False" />
+        </Style>
+        <Style Selector="^ CheckBox">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="0"/>
+        </Style>
+        <Style Selector="^ Rectangle">
+            <Setter Property="IsVisible" Value="False" />
+        </Style>
+        <!-- <Style Selector="^ /template/ Grid"> -->
+        <!--     <Setter Property="Background" Value="Red" /> -->
+        <!-- </Style> -->
+    </Style>
+</Styles>

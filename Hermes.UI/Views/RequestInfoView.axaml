@@ -13,30 +13,33 @@
     </Design.DataContext>
     
     <Border BorderBrush="{StaticResource Accent}" BorderThickness="0" CornerRadius="4">
+       
+        <!-- Bread -->
         <TabControl>
             <!-- Parameters -->
-            <TabItem Header="Params" FontSize="12">
-                <DataGrid ItemsSource="{Binding Parameters}" GridLinesVisibility="All" BorderThickness="0,1,0,0" BorderBrush="{StaticResource Accent}" FontSize="12" 
-                          CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserSortColumns="False" >
-                    
+            <TabItem Header="Params" FontSize="13">
+                <DataGrid ItemsSource="{Binding Parameters}" BorderThickness="0,1,0,0" Background="{StaticResource Background}">
                     <DataGrid.Columns>
                         <!-- Checkbox-->
-                        <DataGridCheckBoxColumn Width="Auto" Binding="{Binding Active}"/>
+                        <DataGridTemplateColumn Width="Auto">
+                            <DataTemplate DataType="model:RequestListOptionViewModel">
+                                <CheckBox IsChecked="{Binding Active}" Classes.active="{Binding !Active}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn>
                         
                         <!-- Keys column -->
                         <DataGridTemplateColumn Width="*">
                             <!-- Header -->
                             <DataGridTemplateColumn.HeaderTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="Key" Foreground="{StaticResource Primary}" />
+                                    <TextBlock Text="Key" />
                                 </DataTemplate>
                             </DataGridTemplateColumn.HeaderTemplate>
                             
                             <!-- Cell -->
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate DataType="model:RequestListOptionViewModel">
-                                    <TextBox Text="{Binding Key}" Background="{StaticResource Background}" Foreground="{StaticResource Accent}"
-                                             VerticalAlignment="Center" BorderThickness="0" Watermark="key..." IsEnabled="{Binding Active}" CornerRadius="0"/>
+                                    <TextBox Text="{Binding Key}" Classes.active="{Binding !Active}" Watermark="key..." />
                                 </DataTemplate>                              
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
@@ -46,15 +49,14 @@
                             <!-- Header -->
                             <DataGridTemplateColumn.HeaderTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="Value" Foreground="{StaticResource Primary}" />
+                                    <TextBlock Text="Value" />
                                 </DataTemplate>
                             </DataGridTemplateColumn.HeaderTemplate>
                             
                             <!-- Cell -->
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate DataType="model:RequestListOptionViewModel">
-                                    <TextBox Text="{Binding Value}" Background="{StaticResource Background}" Foreground="{StaticResource Accent}" VerticalAlignment="Center" 
-                                             BorderThickness="0" Watermark="value..." IsEnabled="{Binding Active}" CornerRadius="0"/>
+                                    <TextBox Text="{Binding Value}" Classes.active="{Binding !Active}" Watermark="value..." />
                                 </DataTemplate>                              
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
@@ -65,27 +67,29 @@
             
             <!-- Headers -->
             <TabItem Header="Headers" FontSize="12">
-                <DataGrid ItemsSource="{Binding Parameters}" GridLinesVisibility="All" BorderThickness="0,1,0,0" BorderBrush="{StaticResource Accent}" FontSize="12" 
-                          CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserSortColumns="False" >
+                <DataGrid ItemsSource="{Binding Headers}" BorderThickness="0,1,0,0">
                     
                     <DataGrid.Columns>
                         <!-- Checkbox-->
-                        <DataGridCheckBoxColumn Width="Auto" Binding="{Binding Active}"/>
+                        <DataGridTemplateColumn Width="Auto">
+                            <DataTemplate DataType="model:RequestListOptionViewModel">
+                                <CheckBox IsChecked="{Binding Active}" Classes.active="{Binding !Active}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn>
                         
                         <!-- Keys column -->
                         <DataGridTemplateColumn Width="*">
                             <!-- Header -->
                             <DataGridTemplateColumn.HeaderTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="Key" Foreground="{StaticResource Primary}" />
+                                    <TextBlock Text="Key" />
                                 </DataTemplate>
                             </DataGridTemplateColumn.HeaderTemplate>
                             
                             <!-- Cell -->
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate DataType="model:RequestListOptionViewModel">
-                                    <TextBox Text="{Binding Key}" Background="{StaticResource Background}" Foreground="{StaticResource Accent}"
-                                             VerticalAlignment="Center" BorderThickness="0" Watermark="key..." IsEnabled="{Binding Active}" CornerRadius="0"/>
+                                    <TextBox Text="{Binding Key}" Classes.active="{Binding !Active}" Watermark="key..." />
                                 </DataTemplate>                              
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
@@ -95,15 +99,14 @@
                             <!-- Header -->
                             <DataGridTemplateColumn.HeaderTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="Value" Foreground="{StaticResource Primary}" />
+                                    <TextBlock Text="Value" />
                                 </DataTemplate>
                             </DataGridTemplateColumn.HeaderTemplate>
                             
                             <!-- Cell -->
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate DataType="model:RequestListOptionViewModel">
-                                    <TextBox Text="{Binding Value}" Background="{StaticResource Background}" Foreground="{StaticResource Accent}" VerticalAlignment="Center" 
-                                             BorderThickness="0" Watermark="value..." IsEnabled="{Binding Active}" CornerRadius="0"/>
+                                    <TextBox Text="{Binding Value}" Classes.active="{Binding !Active}" Watermark="value..." />
                                 </DataTemplate>                              
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
