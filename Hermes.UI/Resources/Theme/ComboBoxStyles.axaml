@@ -14,27 +14,29 @@
         </Border>
     </Design.PreviewWith>
 
-    <Style Selector="ComboBox.HttpMethodCollection ComboBoxItem:nth-child(1)">
-        <Setter Property="Foreground" Value="DeepSkyBlue" />
-    </Style>
-    
-    <Style Selector="ComboBox.HttpMethodCollection ComboBoxItem:nth-child(2)">
-        <Setter Property="Foreground" Value="LimeGreen" />
-    </Style>
-    
-    <Style Selector="ComboBox.HttpMethodCollection ComboBoxItem:nth-child(3)">
-        <Setter Property="Foreground" Value="DarkOrange" />
-    </Style>
-    
-    <Style Selector="ComboBox.HttpMethodCollection ComboBoxItem:nth-child(4)">
-        <Setter Property="Foreground" Value="Orange" />
-    </Style>
-    
-    <Style Selector="ComboBox.HttpMethodCollection ComboBoxItem:nth-child(5)">
-        <Setter Property="Foreground" Value="Red" />
-    </Style>
-    
-    <Style Selector="ComboBox.HttpMethodCollection ComboBoxItem:nth-child(6)">
-        <Setter Property="Foreground" Value="AntiqueWhite" />
+    <Style Selector="ComboBox.HttpMethodCollection">
+        <Style Selector="^ ComboBoxItem:nth-child(1)">
+            <Setter Property="Foreground" Value="DeepSkyBlue" />
+        </Style>
+        
+        <Style Selector="^ ComboBoxItem:nth-child(2)">
+            <Setter Property="Foreground" Value="LimeGreen" />
+        </Style>
+        
+        <Style Selector="^ ComboBoxItem:nth-child(3)">
+            <Setter Property="Foreground" Value="DarkOrange" />
+        </Style>
+        
+        <Style Selector="^ ComboBoxItem:nth-child(4)">
+            <Setter Property="Foreground" Value="Orange" />
+        </Style>
+        
+        <Style Selector="^ ComboBoxItem:nth-child(5)">
+            <Setter Property="Foreground" Value="Red" />
+        </Style>
+        
+        <Style Selector="^ ComboBoxItem:nth-child(6)">
+            <Setter Property="Foreground" Value="AntiqueWhite" />
+        </Style>
     </Style>
 </Styles>
