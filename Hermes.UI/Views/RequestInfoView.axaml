@@ -25,7 +25,7 @@
             
             <!-- Parameters -->
             <TabItem Header="Params" >
-                <DataGrid ItemsSource="{Binding Parameters}" BorderThickness="0,1,0,0" Background="{StaticResource Background}">
+                <DataGrid ItemsSource="{Binding Parameters}" BorderThickness="0,1,0,0" Background="{StaticResource Background}" Classes="CustomDataGrid">
                     <DataGrid.Columns>
                         <!-- Checkbox-->
                         <DataGridTemplateColumn Width="Auto">
@@ -74,7 +74,7 @@
             
             <!-- Headers -->
             <TabItem Header="Headers" FontSize="12">
-                <DataGrid ItemsSource="{Binding Headers}" BorderThickness="0,1,0,0">
+                <DataGrid ItemsSource="{Binding Headers}" BorderThickness="0,1,0,0" Classes="CustomDataGrid">
                     
                     <DataGrid.Columns>
                         <!-- Checkbox-->

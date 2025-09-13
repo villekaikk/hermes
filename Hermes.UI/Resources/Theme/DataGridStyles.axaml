@@ -21,52 +21,55 @@
         <Setter Property="CanUserSortColumns" Value="False"/>
     </Style>
     
-    <Style Selector="DataGridColumnHeader">
-        <Setter Property="BorderThickness" Value="0,0,0,1"/>
-        <Setter Property="BorderBrush" Value="{StaticResource Primary}"/>
-        <Style Selector="^:nth-child()">
-            <Setter Property="Background" Value="{StaticResource Background}"/>
-        </Style>
-        <Style Selector="^:nth-child():pointerover /template/ Grid#PART_ColumnHeaderRoot">
-            <Setter Property="Background" Value="{StaticResource Background}" />
-        </Style>
-        <Style Selector="^:pressed /template/ Grid#PART_ColumnHeaderRoot">
-            <Setter Property="Background" Value="{StaticResource Base}" />
-        </Style>
-        <Style Selector="^ TextBlock">
-            <Setter Property="Foreground" Value="{StaticResource Primary}" />
-        </Style>
-    </Style> 
-    
-    <Style Selector="DataGridCell">
-        <Style Selector="^ TextBox">
-            <Setter Property="Background" Value="{StaticResource Base}" />
-            <Setter Property="Foreground" Value="{StaticResource Accent}" />
-            <Setter Property="CornerRadius" Value="0" />
-            <Setter Property="BorderThickness" Value="0"/>
-        </Style>
-        <Style Selector="^ TextBox.active">
-            <Setter Property="Background" Value="{StaticResource Background}" />
-            <Setter Property="Foreground" Value="DimGray" />
-        </Style>
-        <Style Selector="^:selected">
-            <Setter Property="Background" Value="{StaticResource Background}" />
-            <Setter Property="BorderBrush" Value="{StaticResource Base}"/>
-            <Setter Property="Focusable" Value="False"/>
-        </Style>
-        <Style Selector="^:pointerover">
-            <Setter Property="Background" Value="{StaticResource Background}" />
-        </Style>
-        <Style Selector="^:focus-visible /template/ Grid#FocusVisual">
-            <Setter Property="IsVisible" Value="False" />
-        </Style>
-        <Style Selector="^ CheckBox">
-            <Setter Property="VerticalAlignment" Value="Center" />
-            <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="Padding" Value="0"/>
-        </Style>
-        <Style Selector="^ Rectangle">
-            <Setter Property="IsVisible" Value="False" />
+    <Style Selector="DataGrid.CustomDataGrid" >
+        <Style Selector="^ DataGridColumnHeader">
+            <Setter Property="BorderThickness" Value="0,0,0,1"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Primary}"/>
+            <Style Selector="^:nth-child()">
+                <Setter Property="Background" Value="{StaticResource Background}"/>
+            </Style>
+            <Style Selector="^:nth-child():pointerover /template/ Grid#PART_ColumnHeaderRoot">
+                <Setter Property="Background" Value="{StaticResource Background}" />
+            </Style>
+            <Style Selector="^:pressed /template/ Grid#PART_ColumnHeaderRoot">
+                <Setter Property="Background" Value="{StaticResource Base}" />
+            </Style>
+            <Style Selector="^ TextBlock">
+                <Setter Property="Foreground" Value="{StaticResource Primary}" />
+            </Style>
+        </Style> 
+        
+        <Style Selector="^ DataGridCell">
+            <Style Selector="^ TextBox">
+                <Setter Property="Background" Value="{StaticResource Base}" />
+                <Setter Property="Foreground" Value="{StaticResource Accent}" />
+                <Setter Property="CornerRadius" Value="0" />
+                <Setter Property="BorderThickness" Value="0"/>
+            </Style>
+            <Style Selector="^ TextBox.active">
+                <Setter Property="Background" Value="{StaticResource Background}" />
+                <Setter Property="Foreground" Value="DimGray" />
+            </Style>
+            <Style Selector="^:selected">
+                <Setter Property="Background" Value="{StaticResource Background}" />
+                <Setter Property="BorderBrush" Value="{StaticResource Base}"/>
+                <Setter Property="Focusable" Value="False"/>
+            </Style>
+            <Style Selector="^:pointerover">
+                <Setter Property="Background" Value="{StaticResource Background}" />
+            </Style>
+            <Style Selector="^:focus-visible /template/ Grid#FocusVisual">
+                <Setter Property="IsVisible" Value="False" />
+            </Style>
+            <Style Selector="^ CheckBox">
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="Padding" Value="0"/>
+            </Style>
+            <Style Selector="^ Rectangle">
+                <Setter Property="IsVisible" Value="False" />
+            </Style>
         </Style>
     </Style>
+    
 </Styles>
