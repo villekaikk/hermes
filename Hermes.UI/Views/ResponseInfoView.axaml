@@ -11,37 +11,49 @@
         <vm:ResponseInfoViewModel/>
     </Design.DataContext>
     
-    <Grid RowDefinitions="Auto, *">ö
-        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right">
-            <Label Content="{Binding ResponseContentSize}" IsVisible="{Binding !ResponseContentSize}" />
-            <Label Content="{Binding ResponseStatusCode}" IsVisible="{Binding !ResponseStatusCode}"/>
-            <Label Content="{Binding RequestExecutionTime}" IsVisible="{Binding !RequestExecutionTime}"/>
-        </StackPanel>
-        <TabControl Grid.Row="1">
-            <TabControl.Styles>
-                <Style Selector="TabItem">
-                    <Setter Property="FontSize" Value="12" />
-                </Style>
-                <Style Selector="TabItem">
-                    <Style Selector="^ TextBox.empty">
-                        <Setter Property="HorizontalContentAlignment" Value="Center" />
-                        <Setter Property="VerticalContentAlignment" Value="Center"/>
+    <Border BorderBrush="{StaticResource Base}" BorderThickness="0,1,0,0">
+        
+        <Border.Styles>
+            <Style Selector="Label.Success">
+                <Setter Property="Foreground" Value="DarkGreen" />
+            </Style>
+            <Style Selector="Label.Failure">
+                <Setter Property="Foreground" Value="DarkRed" />
+            </Style>
+        </Border.Styles>
+        
+        <Grid RowDefinitions="Auto, *">
+            <StackPanel Spacing="40" Grid.Row="0" Grid.RowSpan="2" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,25,10,0">
+                <Label Content="{Binding ResponseContentSize}" IsVisible="{Binding !ResponseContentSize}" />
+                <Label Content="{Binding ResponseStatusCode}" IsVisible="{Binding !ResponseStatusCode}" Classes.Success="{Binding RequestSucceed}" Classes.Failure="{Binding !RequestSucceed}" />
+                <Label Content="{Binding RequestExecutionTime}" IsVisible="{Binding !RequestExecutionTime}"/>
+            </StackPanel>
+            <TabControl Grid.Row="1">
+                <TabControl.Styles>
+                    <Style Selector="TabItem">
+                        <Setter Property="FontSize" Value="12" />
                     </Style>
-                </Style>
-            </TabControl.Styles>
-            
-            <TabItem Header="Body">
-                <TextBox IsReadOnly="True" Text="{Binding ResponseBody}" Watermark="Response is displayed here" Classes.empty="{Binding !ResponseBody}" />
-            </TabItem>
-            
-            <TabItem Header="Headers">
-                <DataGrid>
-                    
-                </DataGrid>
-            </TabItem>
-            
-            <TabItem Header="Cookies"></TabItem>
-        </TabControl>
-    </Grid>
+                    <Style Selector="TabItem">
+                        <Style Selector="^ TextBox.empty">
+                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                            <Setter Property="VerticalContentAlignment" Value="Center"/>
+                        </Style>
+                    </Style>
+                </TabControl.Styles>
+                
+                <TabItem Header="Body">
+                    <TextBox IsReadOnly="True" Text="{Binding ResponseBody}" Watermark="Response is displayed here" Classes.empty="{Binding !ResponseBody}" />
+                </TabItem>
+                
+                <TabItem Header="Headers">
+                    <DataGrid>
+                        
+                    </DataGrid>
+                </TabItem>
+                
+                <TabItem Header="Cookies"></TabItem>
+            </TabControl>
+        </Grid>
+    </Border>
     
 </UserControl>

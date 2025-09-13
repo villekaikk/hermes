@@ -29,6 +29,12 @@ public class ResponseInfoViewModel : ReactiveObject
         set => this.RaiseAndSetIfChanged(ref _requestExecutionTime, value);
     }
 
+    public bool RequestSucceed
+    {
+        get => _requestSucceed;
+        set => this.RaiseAndSetIfChanged(ref _requestSucceed, value);
+    }
+
     public ResponseInfoViewModel()
     {
         
@@ -38,4 +44,5 @@ public class ResponseInfoViewModel : ReactiveObject
     private string _responseStatusCode = "200 OK";
     private string _responseContentSize = "20 KB";
     private string _requestExecutionTime = "2.69s";
+    private bool _requestSucceed = true;
 }
