@@ -22,6 +22,8 @@ public partial class RequestListOptionViewModel : ReactiveObject
         get => _active;
         set => this.RaiseAndSetIfChanged(ref _active, value);
     }
+
+    public RequestListOption Item => _item;
     
     public RequestListOptionViewModel() {}
 
@@ -30,13 +32,13 @@ public partial class RequestListOptionViewModel : ReactiveObject
         Key = listOption.Key;
         Value = listOption.Value;
         Active = listOption.Active;
-        item = listOption;
+        _item = listOption;
     }
 
-    public RequestListOption GetListOption() => item;
+    public RequestListOption GetListOption() => _item;
 
     private string _key = string.Empty!;
     private string _value  = string.Empty!;
-    private bool _active  = false!;
-    private RequestListOption item = null!;
+    private bool _active;
+    private readonly RequestListOption _item;
 }

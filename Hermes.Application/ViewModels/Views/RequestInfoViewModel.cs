@@ -15,6 +15,12 @@ public class RequestInfoViewModel : ReactiveObject
         get => _parameters;
         set => this.RaiseAndSetIfChanged(ref _parameters, value);
     }
+    
+    public IReadOnlyCollection<RequestParameter> ParameterList
+        => Parameters.Select(p => p.Item as RequestParameter).ToList().AsReadOnly()!;
+    
+    public IReadOnlyCollection<RequestHeader> HeaderList
+        => Headers.Select(h => h.Item as RequestHeader).ToList().AsReadOnly()!;
 
     public ObservableCollection<RequestListOptionViewModel> Headers
     {

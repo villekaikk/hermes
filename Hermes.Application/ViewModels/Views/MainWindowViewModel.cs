@@ -1,3 +1,4 @@
+using System.Collections.Immutable;
 using Hermes.Application.Interfaces;
 using Hermes.Domain.Models;
 using ReactiveUI;
@@ -16,9 +17,9 @@ public class MainWindowViewModel : ReactiveObject
     {
         // Design time mock
         _mainViewModel = new MainViewModel();
-        _mainViewModel.RegisterSendRequestCallback(async (options, token) =>
+        _mainViewModel.RegisterSendRequestCallback(async (token) =>
         {
-            Console.WriteLine($"Sending a mock {options.Method.Value} request...");
+            Console.WriteLine($"Sending a mock request...");
             await Task.Delay(200, token);
             Console.WriteLine("Mock request sent");
         });
@@ -64,8 +65,14 @@ public class MainWindowViewModel : ReactiveObject
         set => this.RaiseAndSetIfChanged(ref _version, value);
     }
 
-    private async Task ExecuteRequest(RequestOptions options, CancellationToken cancellationToken)
+    private async Task ExecuteRequest(CancellationToken cancellationToken)
     {
+        var options = new RequestOptions(
+            _mainViewModel.SelectedMethod,
+            _mainViewModel.RequestUrl,
+            _requestInfoViewModel.HeaderList,
+            _requestInfoViewModel.ParameterList
+        );
         await _requestExecutionService!.ExecuteRequestAsync(options, cancellationToken);
     }
 }

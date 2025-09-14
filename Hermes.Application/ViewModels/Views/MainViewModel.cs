@@ -1,5 +1,4 @@
 using System.Reactive;
-using Hermes.Application.Interfaces;
 using Hermes.Domain.Models;
 using ReactiveUI;
 
@@ -15,7 +14,7 @@ public class MainViewModel : ReactiveObject
 
     public ReactiveCommand<Unit, Unit> SendRequestCommand { get; }
 
-    public delegate Task SendRequestCallback(RequestOptions options, CancellationToken cancellationToken);
+    public delegate Task SendRequestCallback(CancellationToken cancellationToken);
     
     public string RequestUrl
     {
@@ -49,8 +48,6 @@ public class MainViewModel : ReactiveObject
     private async Task SendRequestAsync(CancellationToken token)
     {
         if (_sendRequestCallback != null)
-            await _sendRequestCallback(new RequestOptions(SelectedMethod, RequestUrl), token);
+            await _sendRequestCallback(token);
     }
-    
-    
 }
