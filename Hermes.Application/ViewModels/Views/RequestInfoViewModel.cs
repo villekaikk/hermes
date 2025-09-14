@@ -17,10 +17,14 @@ public class RequestInfoViewModel : ReactiveObject
     }
     
     public IReadOnlyCollection<RequestParameter> ParameterList
-        => Parameters.Select(p => p.Item as RequestParameter).ToList().AsReadOnly()!;
+        => Parameters
+            .Where(p => p.Active)
+            .Select(p => p.Item as RequestParameter).ToList().AsReadOnly()!;
     
     public IReadOnlyCollection<RequestHeader> HeaderList
-        => Headers.Select(h => h.Item as RequestHeader).ToList().AsReadOnly()!;
+        => Headers
+            .Where(h => h.Active)
+            .Select(h => h.Item as RequestHeader).ToList().AsReadOnly()!;
 
     public ObservableCollection<RequestListOptionViewModel> Headers
     {
