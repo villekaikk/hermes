@@ -1,3 +1,3 @@
 namespace Hermes.Domain.Models;
 
-public record RequestOptions(RequestMethodOption Options, string RequestUrl);
+public record RequestOptions(RequestMethodOption Method, string RequestUrl);
