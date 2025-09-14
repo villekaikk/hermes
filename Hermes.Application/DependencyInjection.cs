@@ -9,6 +9,8 @@ public static class DependencyInjection
     {
         services.AddSingleton<MainWindowViewModel>();
         services.AddSingleton<MainViewModel>();
+        services.AddSingleton<RequestInfoViewModel>();
+        services.AddSingleton<ResponseInfoViewModel>();
         
         return services;
     }

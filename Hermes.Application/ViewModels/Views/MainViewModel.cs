@@ -43,7 +43,6 @@ public class MainViewModel : ReactiveObject
         
         SendRequestCommand = ReactiveCommand.CreateFromTask(SendRequestAsync);
         SendRequestCommand.ThrownExceptions.Subscribe(ex => Console.WriteLine($"Exception thrown: {ex}"));
-
     }
 
     private async Task SendRequestAsync(CancellationToken token)
