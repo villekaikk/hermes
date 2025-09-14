@@ -16,27 +16,27 @@
 
     <Style Selector="ComboBox.HttpMethodCollection">
         <Style Selector="^ ComboBoxItem:nth-child(1)">
-            <Setter Property="Foreground" Value="DeepSkyBlue" />
+            <Setter Property="Foreground" Value="{DynamicResource HttpMethodGet}" />
         </Style>
         
         <Style Selector="^ ComboBoxItem:nth-child(2)">
-            <Setter Property="Foreground" Value="LimeGreen" />
+            <Setter Property="Foreground" Value="{DynamicResource HttpMethodPost}" />
         </Style>
         
         <Style Selector="^ ComboBoxItem:nth-child(3)">
-            <Setter Property="Foreground" Value="DarkOrange" />
+            <Setter Property="Foreground" Value="{DynamicResource HttpMethodPut}" />
         </Style>
         
         <Style Selector="^ ComboBoxItem:nth-child(4)">
-            <Setter Property="Foreground" Value="Orange" />
+            <Setter Property="Foreground" Value="{DynamicResource HttpMethodPatch}" />
         </Style>
         
         <Style Selector="^ ComboBoxItem:nth-child(5)">
-            <Setter Property="Foreground" Value="Red" />
+            <Setter Property="Foreground" Value="{DynamicResource HttpMethodDelete}" />
         </Style>
         
         <Style Selector="^ ComboBoxItem:nth-child(6)">
-            <Setter Property="Foreground" Value="AntiqueWhite" />
+            <Setter Property="Foreground" Value="{DynamicResource HttpMethodOptions}" />
         </Style>
     </Style>
 </Styles>

@@ -9,4 +9,11 @@
     <Color x:Key="Accent">#778DA9</Color>
     <Color x:Key="OffWhite">#E0E1DD</Color>
     
+    <Color x:Key="HttpMethodGet">DeepSkyBlue</Color>
+    <Color x:Key="HttpMethodPost">LimeGreen</Color>
+    <Color x:Key="HttpMethodPut">DarkOrange</Color>
+    <Color x:Key="HttpMethodPatch">Orange</Color>
+    <Color x:Key="HttpMethodDelete">Red</Color>
+    <Color x:Key="HttpMethodOptions">AntiqueWhite</Color>
+    
 </ResourceDictionary>
