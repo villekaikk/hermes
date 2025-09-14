@@ -11,10 +11,12 @@ public class MainViewModel : ReactiveObject
     private int _selectedIndex = 0;
     private string _requestUrl = string.Empty;
     private RequestMethodOption _selectedMethod = null!;
-    private readonly IRequestExecutionService _requestExecutor = null!;
+    private SendRequestCallback? _sendRequestCallback;
 
-    public ReactiveCommand<Unit, Unit> SendRequestCommand { get; } = null!;
+    public ReactiveCommand<Unit, Unit> SendRequestCommand { get; }
 
+    public delegate Task SendRequestCallback(RequestOptions options, CancellationToken cancellationToken);
+    
     public string RequestUrl
     {
         get => _requestUrl;
@@ -35,35 +37,20 @@ public class MainViewModel : ReactiveObject
         set => this.RaiseAndSetIfChanged(ref _selectedMethod, value);
     }
 
+    public void RegisterSendRequestCallback(SendRequestCallback sendRequestCallback) =>
+        _sendRequestCallback = sendRequestCallback ?? throw new ArgumentNullException(nameof(sendRequestCallback));
+
     public MainViewModel()
     {
-        // Design time mock
-        _requestExecutor = new MockRequestExecutionService();
-        SendRequestCommand = ReactiveCommand.CreateFromTask(SendRequestAsync);
-        SendRequestCommand.ThrownExceptions.Subscribe(ex => Console.WriteLine($"Exception thrown: {ex}"));
-    }
-
-    public MainViewModel(IRequestExecutionService? requestExecutionService)
-    {
-        _requestExecutor = requestExecutionService ?? throw new ArgumentNullException(nameof(requestExecutionService));
-        
         SendRequestCommand = ReactiveCommand.CreateFromTask(SendRequestAsync);
         SendRequestCommand.ThrownExceptions.Subscribe(ex => Console.WriteLine($"Exception thrown: {ex}"));
     }
 
     private async Task SendRequestAsync(CancellationToken token)
     {
-        var options = new RequestOptions(SelectedMethod, RequestUrl);
-        await _requestExecutor.ExecuteRequestAsync(options, token)!;
+        if (_sendRequestCallback != null)
+            await _sendRequestCallback(new RequestOptions(SelectedMethod, RequestUrl), token);
     }
-
-    private class MockRequestExecutionService : IRequestExecutionService
-    {
-        public async Task ExecuteRequestAsync(RequestOptions options, CancellationToken token)
-        {
-            Console.WriteLine("Sending a mock request");
-            await Task.Delay(200, token);
-            Console.WriteLine("Mock request sent");
-        }
-    }
+    
+    
 }
