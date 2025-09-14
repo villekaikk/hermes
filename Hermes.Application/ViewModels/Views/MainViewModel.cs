@@ -47,6 +47,8 @@ public class MainViewModel : ReactiveObject
 
     private async Task SendRequestAsync(CancellationToken token)
     {
+        if (string.IsNullOrEmpty(RequestUrl)) return;
+        
         if (_sendRequestCallback != null)
             await _sendRequestCallback(token);
     }
