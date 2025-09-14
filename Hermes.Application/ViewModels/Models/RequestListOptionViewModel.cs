@@ -5,10 +5,18 @@ namespace Hermes.Application.ViewModels.Models;
 
 public partial class RequestListOptionViewModel : ReactiveObject
 {
+    public delegate void KeyChangedEventHandler();
+    
+    private event KeyChangedEventHandler KeyChanged;
+    
     public string Key
     {
         get => _key;
-        set => this.RaiseAndSetIfChanged(ref _key, value);
+        set
+        {
+            this.RaiseAndSetIfChanged(ref _key, value);
+            KeyChanged?.Invoke();
+        }
     }
 
     public string Value
@@ -23,22 +31,18 @@ public partial class RequestListOptionViewModel : ReactiveObject
         set => this.RaiseAndSetIfChanged(ref _active, value);
     }
 
-    public RequestListOption Item => _item;
-    
-    public RequestListOptionViewModel() {}
+    public RequestListOption Item { get; }
 
-    public RequestListOptionViewModel(RequestListOption listOption)
+    public RequestListOptionViewModel(RequestListOption listOption, KeyChangedEventHandler eventHandler)
     {
         Key = listOption.Key;
         Value = listOption.Value;
         Active = listOption.Active;
-        _item = listOption;
+        Item = listOption;
+        KeyChanged += eventHandler;
     }
-
-    public RequestListOption GetListOption() => _item;
 
     private string _key = string.Empty!;
     private string _value  = string.Empty!;
     private bool _active;
-    private readonly RequestListOption _item;
 }

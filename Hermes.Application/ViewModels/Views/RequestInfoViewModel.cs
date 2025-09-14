@@ -28,16 +28,25 @@ public class RequestInfoViewModel : ReactiveObject
         set => this.RaiseAndSetIfChanged(ref _headers, value);
     }
 
+    private void UpdateParamList()
+    {
+        if (!string.IsNullOrEmpty(Parameters.Last().Key))
+        {
+            Parameters.Add(new RequestListOptionViewModel(RequestParameterExtensions.EmptyParameter, UpdateParamList));
+        }
+    }
+    
+    private void UpdateHeaderList()
+    {
+        if (!string.IsNullOrEmpty(Headers.Last().Key))
+        {
+            Headers.Add(new RequestListOptionViewModel(RequestHeaderExtensions.EmptyHeader, UpdateHeaderList));
+        }
+    }
+
     public RequestInfoViewModel()
     {
-        Parameters = [
-            new RequestListOptionViewModel(new RequestParameter("param1", "value1", true)),
-            new RequestListOptionViewModel(new RequestParameter("param2", "value2", false))
-        ];
-        Headers = [
-            new RequestListOptionViewModel(new RequestHeader("header1", "value1", false)),
-            new RequestListOptionViewModel(new RequestHeader("header2", "value2", true))
-        ];
-
+        Parameters = [new RequestListOptionViewModel(RequestParameterExtensions.EmptyParameter, UpdateParamList)];
+        Headers = [new RequestListOptionViewModel(RequestHeaderExtensions.EmptyHeader, UpdateHeaderList)];
     }
 }
