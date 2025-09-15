@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 namespace Hermes.Domain.Models;
 
 public class RequestMethodOption
@@ -14,6 +12,4 @@ public class RequestMethodOption
     public static RequestMethodOption Patch => new("PATCH");
     public static RequestMethodOption Delete => new("DELETE");
     public static RequestMethodOption Options => new("OPTIONS");
-
-    public static List<RequestMethodOption> MethodOptionsList => [Get, Post, Put, Patch, Delete, Options];
 }

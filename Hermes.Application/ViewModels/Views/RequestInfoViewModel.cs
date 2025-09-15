@@ -36,7 +36,7 @@ public class RequestInfoViewModel : ReactiveObject
     {
         if (!string.IsNullOrEmpty(Parameters.Last().Key))
         {
-            Parameters.Add(new RequestListOptionViewModel(RequestParameterExtensions.EmptyParameter, UpdateParamList));
+            Parameters.Add(new RequestListOptionViewModel(RequestParameter.Empty, UpdateParamList));
         }
     }
     
@@ -44,13 +44,13 @@ public class RequestInfoViewModel : ReactiveObject
     {
         if (!string.IsNullOrEmpty(Headers.Last().Key))
         {
-            Headers.Add(new RequestListOptionViewModel(RequestHeaderExtensions.EmptyHeader, UpdateHeaderList));
+            Headers.Add(new RequestListOptionViewModel(RequestHeader.Empty, UpdateHeaderList));
         }
     }
 
     public RequestInfoViewModel()
     {
-        Parameters = [new RequestListOptionViewModel(RequestParameterExtensions.EmptyParameter, UpdateParamList)];
-        Headers = [new RequestListOptionViewModel(RequestHeaderExtensions.EmptyHeader, UpdateHeaderList)];
+        Parameters = [new RequestListOptionViewModel(RequestParameter.Empty, UpdateParamList)];
+        Headers = [new RequestListOptionViewModel(RequestHeader.Empty, UpdateHeaderList)];
     }
 }

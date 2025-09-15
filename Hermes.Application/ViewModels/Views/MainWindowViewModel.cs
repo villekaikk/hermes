@@ -46,7 +46,6 @@ public class MainWindowViewModel : ReactiveObject
         set => this.RaiseAndSetIfChanged(ref _mainViewModel, value);
     }
 
-
     public RequestInfoViewModel RequestInfoViewModel
     {
         get => _requestInfoViewModel;

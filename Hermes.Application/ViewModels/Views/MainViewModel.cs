@@ -28,7 +28,14 @@ public class MainViewModel : ReactiveObject
         set => this.RaiseAndSetIfChanged(ref _selectedIndex, value);
     }
 
-    public IReadOnlyList<RequestMethodOption> Methods => RequestMethodOption.MethodOptionsList;
+    public IReadOnlyList<RequestMethodOption> Methods => [
+        RequestMethodOption.Get,
+        RequestMethodOption.Post,
+        RequestMethodOption.Put,
+        RequestMethodOption.Patch,
+        RequestMethodOption.Delete,
+        RequestMethodOption.Options
+    ];
 
     public RequestMethodOption SelectedMethod
     {
