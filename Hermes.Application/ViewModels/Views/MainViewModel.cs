@@ -22,34 +22,19 @@ public class MainViewModel : ReactiveObject
     
     public string RequestUrl
     {
-        get => $"{_requestUrl}{(_queryString.Length > 0 ? "?" + QueryString : string.Empty )}";
+        get => _requestUrl;
         set
         {
-            if (value.Contains('?') && value.Split('?').Length > 1)
-            {
-                var splits = value.Split('?');
-                _requestUrl = splits[0];
-                QueryString = splits[1];
-            }
-            else
-            {
-                this.RaiseAndSetIfChanged(ref _requestUrl, value);
-            }
+            this.RaiseAndSetIfChanged(ref _requestUrl, value);
+            if(_requestUrl.Contains('?') && !string.IsNullOrWhiteSpace(_requestUrl.Split('?')[1]))
+                UpdateQueryString(_requestUrl.Split('?')[1]);
         }
     }
 
-    public string QueryString
+    private void UpdateQueryString(string requestUrl)
     {
-        get => _queryString;
-        set
-        {
-            this.RaiseAndSetIfChanged(ref _queryString, value);
-            if (!string.IsNullOrWhiteSpace(_queryString) && _queryString.TryParseQueryParams(out var queryParams))
-            {
-                Console.WriteLine($"QueryParams: {queryParams.Select(p => $"{p.Key}={p.Value}").Aggregate((a, b) => $"{a}, {b}")}");
-                //QueryParamUpdated?.Invoke(queryParams);
-            }
-        }
+        var queryParams = requestUrl.ParseQueryParams();
+        QueryParamUpdated?.Invoke(queryParams);
     }
 
     public int SelectedIndex

@@ -32,25 +32,38 @@ public class RequestInfoViewModel : ReactiveObject
         set => this.RaiseAndSetIfChanged(ref _headers, value);
     }
 
-    private void UpdateParamList()
+    public void QueryStringUpdatedEventHandler(List<QueryParam> queryParams)
     {
-        if (!string.IsNullOrEmpty(Parameters.Last().Key))
+        Parameters.Clear();
+        // queryParams.ForEach(p => Console.WriteLine($"{p.Key}: {p.Value}"));
+        if (queryParams.Count > 0)
         {
-            Parameters.Add(new RequestListOptionViewModel(RequestParameter.Empty, UpdateParamList));
+            queryParams.ForEach(p => 
+                Parameters.Add(new RequestListOptionViewModel(new RequestParameter(p.Key, p.Value, true) , EnsureEmptyParam))
+                );
+        }
+        EnsureEmptyParam();
+    }
+
+    private void EnsureEmptyParam()
+    {
+        if (Parameters.Count == 0 || !string.IsNullOrEmpty(Parameters.Last().Key))
+        {
+            Parameters.Add(new RequestListOptionViewModel(RequestParameter.Empty, EnsureEmptyParam));
         }
     }
     
-    private void UpdateHeaderList()
+    private void EnsureEmptyHeader()
     {
-        if (!string.IsNullOrEmpty(Headers.Last().Key))
+        if (Headers.Count == 0 || !string.IsNullOrEmpty(Headers.Last().Key))
         {
-            Headers.Add(new RequestListOptionViewModel(RequestHeader.Empty, UpdateHeaderList));
+            Headers.Add(new RequestListOptionViewModel(RequestHeader.Empty, EnsureEmptyHeader));
         }
     }
 
     public RequestInfoViewModel()
     {
-        Parameters = [new RequestListOptionViewModel(RequestParameter.Empty, UpdateParamList)];
-        Headers = [new RequestListOptionViewModel(RequestHeader.Empty, UpdateHeaderList)];
+        Parameters = [new RequestListOptionViewModel(RequestParameter.Empty, EnsureEmptyParam)];
+        Headers = [new RequestListOptionViewModel(RequestHeader.Empty, EnsureEmptyHeader)];
     }
 }

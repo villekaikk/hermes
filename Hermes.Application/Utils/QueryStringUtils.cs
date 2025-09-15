@@ -5,26 +5,24 @@ namespace Hermes.Application.Utils;
 
 public static class QueryStringUtils
 {
-    public static bool TryParseQueryParams(this string queryString, out List<QueryParam> paramsList)
+    public static List<QueryParam> ParseQueryParams(this string queryString)
     {
-        if (!queryString.Contains('='))
-        {
-            paramsList = [];
-            return false;
-        }
-            
+        List<QueryParam> paramsList = [];
+
         try
         {
             var paramsCollection = HttpUtility.ParseQueryString(queryString);
-            
-            paramsList = paramsCollection.Cast<string>().Select(p => new QueryParam(p, paramsCollection[p]!)).ToList();
-            return true;
+            paramsList = paramsCollection.Cast<string>()
+                .Where(p => !string.IsNullOrWhiteSpace(p))
+                .Select(p => new QueryParam(p, paramsCollection[p] ?? string.Empty))
+                .ToList();
         }
         catch (Exception)
         {
-            paramsList = [];
-            return false;
+            // ignored
         }
+
+        return paramsList;
     }
 
     public static string BuildQueryString(this List<QueryParam> paramsList)

@@ -38,6 +38,7 @@ public class MainWindowViewModel : ReactiveObject
         _requestInfoViewModel = requestInfoViewModel;
         _responseInfoViewModel = responseInfoViewModel;
         _requestExecutionService = requestExecutionService;
+        _mainViewModel.QueryParamUpdated += requestInfoViewModel.QueryStringUpdatedEventHandler;
     }
 
     public MainViewModel MainViewModel
