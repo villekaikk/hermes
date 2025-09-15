@@ -16,7 +16,7 @@
         <ComboBox Grid.Row="0" Grid.Column="0" ItemsSource="{Binding Methods}" DisplayMemberBinding="{Binding Value}" SelectedItem="{Binding SelectedMethod}" IsEnabled="{Binding !SendRequestCommand.IsExecuting}"
                   SelectedIndex="{Binding SelectedIndex}" BorderThickness="1" CornerRadius="4" FontSize="12" MinWidth="100" Margin="0, 1, 0, 0" Classes="HttpMethodCollection" />
         <TextBox Grid.Row="0" Grid.Column="1" Watermark="URL" Text="{Binding RequestUrl}" BorderThickness="1" CornerRadius="4" FontSize="14" MaxHeight="32" IsEnabled="{Binding !SendRequestCommand.IsExecuting}" />
-        <Button Grid.Row="0" Grid.Column="2" Command="{Binding SendRequestCommand}" Content="Send" BorderThickness="1" CornerRadius="4" Background="{StaticResource Accent}" Height="34" />
+        <Button Grid.Row="0" Grid.Column="2" Command="{Binding SendRequestCommand}" Content="Send" BorderThickness="1" CornerRadius="4" Background="{StaticResource Accent}" Height="33" Padding="10,7" FontWeight="Bold" />
     </Grid>
     <!-- </StackPanel> -->
     
