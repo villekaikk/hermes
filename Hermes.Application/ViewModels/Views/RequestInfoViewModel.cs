@@ -26,12 +26,12 @@ public class RequestInfoViewModel : ReactiveObject
     
     public IReadOnlyCollection<RequestParameter> ParameterList
         => Parameters
-            .Where(p => p.Active)
+            .Where(p => p.Active && !string.IsNullOrEmpty(p.Key) && !string.IsNullOrEmpty(p.Value))
             .Select(p => p.Item as RequestParameter).ToList().AsReadOnly()!;
     
     public IReadOnlyCollection<RequestHeader> HeaderList
         => Headers
-            .Where(h => h.Active)
+            .Where(h => h.Active && !string.IsNullOrEmpty(h.Key) && !string.IsNullOrEmpty(h.Value))
             .Select(h => h.Item as RequestHeader).ToList().AsReadOnly()!;
 
     public ObservableCollection<RequestListOptionViewModel> Headers
