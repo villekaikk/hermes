@@ -10,7 +10,7 @@ public class RequestInfoViewModel : ReactiveObject
 {
     private ObservableCollection<ListOptionViewModel> _parameters = [];
     private ObservableCollection<ListOptionViewModel> _headers  = [];
-    private readonly IQueryParamChannel _channel;
+    private readonly IQueryParamChannel? _channel;
     private bool _eventHandlingOngoing;
 
     public ObservableCollection<ListOptionViewModel> Parameters
@@ -20,7 +20,7 @@ public class RequestInfoViewModel : ReactiveObject
         {
             this.RaiseAndSetIfChanged(ref _parameters, value);
             if (!_eventHandlingOngoing)
-                _channel.NotifyQueryParamsUpdated(_parameters.Select(p => new QueryParam(p.Key, p.Value)).ToList());
+                _channel?.NotifyQueryParamsUpdated(_parameters.Select(p => new QueryParam(p.Key, p.Value)).ToList());
         }
     }
     
@@ -83,7 +83,7 @@ public class RequestInfoViewModel : ReactiveObject
             .Where(p => p.Active)
             .Select(p => new QueryParam(p.Key, p.Value))
             .ToList();
-        _channel.NotifyQueryParamsUpdated(queryParams);
+        _channel?.NotifyQueryParamsUpdated(queryParams);
     }
 
     private void AddParam(RequestParameter param)
@@ -103,6 +103,7 @@ public class RequestInfoViewModel : ReactiveObject
         Headers.Add(newHeader);
     }
 
+    public RequestInfoViewModel() { }
     public RequestInfoViewModel(IQueryParamChannel chl)
     {
         _channel = chl;

@@ -12,10 +12,10 @@ public class MainViewModel : ReactiveObject
     private string _requestUrl = string.Empty;
     private RequestMethodOption _selectedMethod = null!;
     private SendRequestCallback? _sendRequestCallback;
-    private readonly IQueryParamChannel _channel;
+    private readonly IQueryParamChannel? _channel;
     private bool _eventHandlingOngoing; 
 
-    public ReactiveCommand<Unit, Unit> SendRequestCommand { get; }
+    public ReactiveCommand<Unit, Unit>? SendRequestCommand { get; }
 
     public delegate Task SendRequestCallback(CancellationToken cancellationToken);
     
@@ -38,7 +38,7 @@ public class MainViewModel : ReactiveObject
             return;
         
         var queryParams = requestUrl.ParseQueryParams();
-        _channel.NotifyQueryStringUpdated(queryParams);
+        _channel?.NotifyQueryStringUpdated(queryParams);
     }
 
     public int SelectedIndex
@@ -83,8 +83,10 @@ public class MainViewModel : ReactiveObject
             _eventHandlingOngoing = false;
         }
     }
+    
+    public MainViewModel() { }
 
-    public MainViewModel(IQueryParamChannel chl)
+    public MainViewModel(IQueryParamChannel chl, IQueryParamChannel channel, ReactiveCommand<Unit, Unit> sendRequestCommand)
     {
         _channel = chl;
         _channel.QueryParamsUpdated += QueryParamsUpdatedEventHandler;

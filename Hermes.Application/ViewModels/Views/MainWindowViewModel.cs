@@ -15,7 +15,7 @@ public class MainWindowViewModel : ReactiveObject
     public MainWindowViewModel()
     {
         // Design time mocks
-        _mainViewModel = new MainViewModel(null!);
+        _mainViewModel = new MainViewModel();
         _mainViewModel.RegisterSendRequestCallback(async (token) =>
         {
             Console.WriteLine($"Sending a mock request...");
@@ -23,7 +23,7 @@ public class MainWindowViewModel : ReactiveObject
             Console.WriteLine("Mock request sent");
         });
         
-        _requestInfoViewModel = new RequestInfoViewModel(null!);
+        _requestInfoViewModel = new RequestInfoViewModel();
         _responseInfoViewModel = new ResponseInfoViewModel();
     }
 
