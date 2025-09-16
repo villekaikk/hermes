@@ -24,4 +24,9 @@ public static class QueryStringUtils
 
         return paramsList;
     }
+
+    public static string ToQueryString(this IEnumerable<QueryParam> queryParams) 
+        => string.Join("&", queryParams.Where(p => !string.IsNullOrWhiteSpace(p.Key))
+            .Select(p => $"{p.Key}={p.Value}")
+            .ToList());
 }

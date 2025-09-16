@@ -10,7 +10,6 @@ public class MainViewModel : ReactiveObject
 {
     private int _selectedIndex;
     private string _requestUrl = string.Empty;
-    private string _queryString = string.Empty;
     private RequestMethodOption _selectedMethod = null!;
     private SendRequestCallback? _sendRequestCallback;
     private readonly IQueryParamChannel _channel;
@@ -30,6 +29,8 @@ public class MainViewModel : ReactiveObject
                 UpdateQueryString(_requestUrl.Split('?')[1]);
         }
     }
+    
+    public string BaseUrl => RequestUrl.Contains('?') ? RequestUrl.Split('?')[0] : RequestUrl;
 
     private void UpdateQueryString(string requestUrl)
     {
@@ -73,11 +74,7 @@ public class MainViewModel : ReactiveObject
             if (url.Contains('?'))
                 url = url.Split('?')[0];
 
-            var queryString = string.Join("&", queryParams.
-                Where(p => !string.IsNullOrWhiteSpace(p.Key))
-                .Select(p => $"{p.Key}={p.Value}")
-                .ToList()
-            );
+            var queryString = queryParams.ToQueryString();
             
             RequestUrl = $"{url}{(string.IsNullOrWhiteSpace(queryString) ? string.Empty : "?" + queryString)}";
         }

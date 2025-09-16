@@ -67,7 +67,7 @@ public class MainWindowViewModel : ReactiveObject
     {
         var options = new RequestOptions(
             _mainViewModel.SelectedMethod,
-            _mainViewModel.RequestUrl,
+            _mainViewModel.BaseUrl,
             _requestInfoViewModel.HeaderList,
             _requestInfoViewModel.ParameterList
         );
