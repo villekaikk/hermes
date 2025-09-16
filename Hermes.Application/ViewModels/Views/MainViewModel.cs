@@ -1,4 +1,5 @@
 using System.Reactive;
+using Hermes.Application.Interfaces;
 using Hermes.Application.Utils;
 using Hermes.Domain.Models;
 using ReactiveUI;
@@ -12,11 +13,10 @@ public class MainViewModel : ReactiveObject
     private string _queryString = string.Empty;
     private RequestMethodOption _selectedMethod = null!;
     private SendRequestCallback? _sendRequestCallback;
+    private readonly IQueryParamChannel _channel;
+    private bool _eventHandlingOngoing; 
 
     public ReactiveCommand<Unit, Unit> SendRequestCommand { get; }
-    
-    public delegate void QueryParamUpdatedEventHandler(List<QueryParam> queryParams);
-    public event  QueryParamUpdatedEventHandler QueryParamUpdated;
 
     public delegate Task SendRequestCallback(CancellationToken cancellationToken);
     
@@ -34,7 +34,7 @@ public class MainViewModel : ReactiveObject
     private void UpdateQueryString(string requestUrl)
     {
         var queryParams = requestUrl.ParseQueryParams();
-        QueryParamUpdated?.Invoke(queryParams);
+        _channel.NotifyQueryStringUpdated(queryParams);
     }
 
     public int SelectedIndex
@@ -61,15 +61,25 @@ public class MainViewModel : ReactiveObject
     public void RegisterSendRequestCallback(SendRequestCallback sendRequestCallback) =>
         _sendRequestCallback = sendRequestCallback ?? throw new ArgumentNullException(nameof(sendRequestCallback));
 
-    public MainViewModel()
+    private void QueryParamsUpdatedEventHandler(List<QueryParam> queryParams)
     {
-        SendRequestCommand = ReactiveCommand.CreateFromTask(SendRequestAsync);
-        SendRequestCommand.ThrownExceptions.Subscribe(ex => Console.WriteLine($"Exception thrown: {ex}"));
+        try
+        {
+            _eventHandlingOngoing = true;
+            Console.WriteLine("Got new query params!");
+        }
+        finally
+        {
+            _eventHandlingOngoing = false;
+        }
     }
 
-    public void UpdateQueryString()
+    public MainViewModel(IQueryParamChannel chl)
     {
-        
+        _channel = chl;
+        _channel.QueryParamsUpdated += QueryParamsUpdatedEventHandler;
+        SendRequestCommand = ReactiveCommand.CreateFromTask(SendRequestAsync);
+        SendRequestCommand.ThrownExceptions.Subscribe(ex => Console.WriteLine($"Exception thrown: {ex}"));
     }
 
     private async Task SendRequestAsync(CancellationToken token)
