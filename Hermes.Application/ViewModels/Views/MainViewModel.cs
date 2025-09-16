@@ -33,6 +33,9 @@ public class MainViewModel : ReactiveObject
 
     private void UpdateQueryString(string requestUrl)
     {
+        if (_eventHandlingOngoing)
+            return;
+        
         var queryParams = requestUrl.ParseQueryParams();
         _channel.NotifyQueryStringUpdated(queryParams);
     }
@@ -66,7 +69,17 @@ public class MainViewModel : ReactiveObject
         try
         {
             _eventHandlingOngoing = true;
-            Console.WriteLine("Got new query params!");
+            var url = _requestUrl;
+            if (url.Contains('?'))
+                url = url.Split('?')[0];
+
+            var queryString = string.Join("&", queryParams.
+                Where(p => !string.IsNullOrWhiteSpace(p.Key))
+                .Select(p => $"{p.Key}={p.Value}")
+                .ToList()
+            );
+            
+            RequestUrl = $"{url}{(string.IsNullOrWhiteSpace(queryString) ? string.Empty : "?" + queryString)}";
         }
         finally
         {
