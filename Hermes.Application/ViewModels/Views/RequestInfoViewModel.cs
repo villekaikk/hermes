@@ -8,12 +8,12 @@ namespace Hermes.Application.ViewModels.Views;
 
 public class RequestInfoViewModel : ReactiveObject
 {
-    private ObservableCollection<RequestListOptionViewModel> _parameters = [];
-    private ObservableCollection<RequestListOptionViewModel> _headers  = [];
+    private ObservableCollection<ListOptionViewModel> _parameters = [];
+    private ObservableCollection<ListOptionViewModel> _headers  = [];
     private readonly IQueryParamChannel _channel;
     private bool _eventHandlingOngoing;
 
-    public ObservableCollection<RequestListOptionViewModel> Parameters
+    public ObservableCollection<ListOptionViewModel> Parameters
     {
         get => _parameters;
         set
@@ -34,7 +34,7 @@ public class RequestInfoViewModel : ReactiveObject
             .Where(h => h.Active && !string.IsNullOrEmpty(h.Key) && !string.IsNullOrEmpty(h.Value))
             .Select(h => h.Item as RequestHeader).ToList().AsReadOnly()!;
 
-    public ObservableCollection<RequestListOptionViewModel> Headers
+    public ObservableCollection<ListOptionViewModel> Headers
     {
         get => _headers;
         set => this.RaiseAndSetIfChanged(ref _headers, value);
@@ -71,7 +71,7 @@ public class RequestInfoViewModel : ReactiveObject
     {
         if (Headers.Count == 0 || !string.IsNullOrEmpty(Headers.Last().Key))
         {
-            var newHeader = new RequestListOptionViewModel(RequestHeader.Empty);
+            var newHeader = new ListOptionViewModel(RequestHeader.Empty);
             newHeader.KeyChanged += EnsureEmptyHeader;
             Headers.Add(newHeader);
         }
@@ -88,7 +88,7 @@ public class RequestInfoViewModel : ReactiveObject
 
     private void AddParam(RequestParameter param)
     {
-        var newParam = new RequestListOptionViewModel(param);
+        var newParam = new ListOptionViewModel(param);
         newParam.KeyChanged += EnsureEmptyParam;
         newParam.KeyChanged += ParameterChanged;
         newParam.ValueChanged += ParameterChanged;
@@ -96,9 +96,9 @@ public class RequestInfoViewModel : ReactiveObject
         Parameters.Add(newParam);
     }
 
-    private void AddHeader(RequestHeader header)
+    private void AddHeader(RequestHeader requestHeader)
     {
-        var newHeader = new RequestListOptionViewModel(header);
+        var newHeader = new ListOptionViewModel(requestHeader);
         newHeader.KeyChanged += EnsureEmptyHeader;
         Headers.Add(newHeader);
     }

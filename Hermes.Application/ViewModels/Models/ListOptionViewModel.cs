@@ -3,13 +3,13 @@ using ReactiveUI;
 
 namespace Hermes.Application.ViewModels.Models;
 
-public partial class RequestListOptionViewModel : ReactiveObject
+public partial class ListOptionViewModel : ReactiveObject
 {
     public delegate void ListObjectUpdatedEventHandler();
     
-    public event ListObjectUpdatedEventHandler KeyChanged;
-    public event ListObjectUpdatedEventHandler ValueChanged;
-    public event ListObjectUpdatedEventHandler ActiveChanged;
+    public event ListObjectUpdatedEventHandler? KeyChanged;
+    public event ListObjectUpdatedEventHandler? ValueChanged;
+    public event ListObjectUpdatedEventHandler? ActiveChanged;
     
     public string Key
     {
@@ -41,9 +41,9 @@ public partial class RequestListOptionViewModel : ReactiveObject
         }
     }
 
-    public RequestListOption Item { get; }
+    public ListOption Item { get; }
 
-    public RequestListOptionViewModel(RequestListOption listOption)
+    public ListOptionViewModel(ListOption listOption)
     {
         Key = listOption.Key;
         Value = listOption.Value;

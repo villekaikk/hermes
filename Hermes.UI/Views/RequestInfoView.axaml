@@ -29,7 +29,7 @@
                     <DataGrid.Columns>
                         <!-- Checkbox-->
                         <DataGridTemplateColumn Width="Auto">
-                            <DataTemplate DataType="model:RequestListOptionViewModel">
+                            <DataTemplate DataType="model:ListOptionViewModel">
                                 <CheckBox IsChecked="{Binding Active}" Classes.active="{Binding !Active}" />
                             </DataTemplate>
                         </DataGridTemplateColumn>
@@ -45,7 +45,7 @@
                             
                             <!-- Cell -->
                             <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate DataType="model:RequestListOptionViewModel">
+                                <DataTemplate DataType="model:ListOptionViewModel">
                                     <TextBox Text="{Binding Key}" Classes.active="{Binding !Active}" Watermark="key..." />
                                 </DataTemplate>                              
                             </DataGridTemplateColumn.CellTemplate>
@@ -62,7 +62,7 @@
                             
                             <!-- Cell -->
                             <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate DataType="model:RequestListOptionViewModel">
+                                <DataTemplate DataType="model:ListOptionViewModel">
                                     <TextBox Text="{Binding Value}" Classes.active="{Binding !Active}" Watermark="value..." />
                                 </DataTemplate>                              
                             </DataGridTemplateColumn.CellTemplate>
@@ -79,7 +79,7 @@
                     <DataGrid.Columns>
                         <!-- Checkbox-->
                         <DataGridTemplateColumn Width="Auto">
-                            <DataTemplate DataType="model:RequestListOptionViewModel">
+                            <DataTemplate DataType="model:ListOptionViewModel">
                                 <CheckBox IsChecked="{Binding Active}" Classes.active="{Binding !Active}" />
                             </DataTemplate>
                         </DataGridTemplateColumn>
@@ -95,7 +95,7 @@
                             
                             <!-- Cell -->
                             <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate DataType="model:RequestListOptionViewModel">
+                                <DataTemplate DataType="model:ListOptionViewModel">
                                     <TextBox Text="{Binding Key}" Classes.active="{Binding !Active}" Watermark="key..." />
                                 </DataTemplate>                              
                             </DataGridTemplateColumn.CellTemplate>
@@ -112,7 +112,7 @@
                             
                             <!-- Cell -->
                             <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate DataType="model:RequestListOptionViewModel">
+                                <DataTemplate DataType="model:ListOptionViewModel">
                                     <TextBox Text="{Binding Value}" Classes.active="{Binding !Active}" Watermark="value..." />
                                 </DataTemplate>                              
                             </DataGridTemplateColumn.CellTemplate>
