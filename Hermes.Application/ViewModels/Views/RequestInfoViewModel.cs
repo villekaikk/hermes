@@ -46,7 +46,6 @@ public class RequestInfoViewModel : ReactiveObject
         {
             _eventHandlingOngoing = true;   // Don't delegate these changes back to MainViewModel
             Parameters.Clear();
-            Console.WriteLine("We here");
             if (queryParams.Count > 0)
             {
                 queryParams.ForEach(p => AddParam(new RequestParameter(p.Key, p.Value, true)));

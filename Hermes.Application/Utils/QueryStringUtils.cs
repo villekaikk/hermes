@@ -24,14 +24,4 @@ public static class QueryStringUtils
 
         return paramsList;
     }
-
-    public static string BuildQueryString(this List<QueryParam> paramsList)
-    {
-        var queryString = HttpUtility.ParseQueryString(string.Empty);
-        foreach (var param in paramsList)
-        {
-            queryString[param.Key] = param.Value;
-        }
-        return queryString?.ToString() ?? string.Empty;
-    }
 }
