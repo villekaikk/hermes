@@ -1,15 +1,13 @@
+using System.ComponentModel;
+
 namespace Hermes.Domain.Models;
 
-public class RequestMethodOption
+public enum RequestMethodOption
 {
-    private RequestMethodOption(string value) { Value = value; }
-
-    public string Value { get; }
-    
-    public static RequestMethodOption Get => new("GET");
-    public static RequestMethodOption Post => new("POST");
-    public static RequestMethodOption Put => new("PUT");
-    public static RequestMethodOption Patch => new("PATCH");
-    public static RequestMethodOption Delete => new("DELETE");
-    public static RequestMethodOption Options => new("OPTIONS");
+    Get,
+    Post,
+    Put,
+    Patch,
+    Delete,
+    Options
 }

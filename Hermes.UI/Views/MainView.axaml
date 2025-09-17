@@ -3,6 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:Hermes.Application.ViewModels.Views;assembly=Hermes.Application"
+             xmlns:conv="clr-namespace:Hermes.UI.Helpers"
              mc:Ignorable="d" d:DesignWidth="1024" d:DesignHeight="640"
              x:DataType="vm:MainViewModel"
              x:Class="Hermes.UI.Views.MainView">
@@ -11,10 +12,21 @@
         <vm:MainViewModel/>
     </Design.DataContext>
     
-    <!-- <StackPanel Orientation="Horizontal" Height="50" > -->
-    <Grid RowDefinitions="Auto" ColumnDefinitions="Auto, *, Auto" ColumnSpacing="5" >        
-        <ComboBox Grid.Row="0" Grid.Column="0" ItemsSource="{Binding Methods}" DisplayMemberBinding="{Binding Value}" SelectedItem="{Binding SelectedMethod}" IsEnabled="{Binding !SendRequestCommand.IsExecuting}"
-                  SelectedIndex="{Binding SelectedIndex}" BorderThickness="1" CornerRadius="4" FontSize="12" MinWidth="100" Margin="0, 1, 0, 0" Classes="HttpMethodCollection" />
+    <UserControl.Resources>
+        <conv:EnumToStringConverter x:Key="EnumToStringConverter" />
+    </UserControl.Resources>
+    
+    <Grid RowDefinitions="Auto" ColumnDefinitions="Auto, *, Auto" ColumnSpacing="5" >
+        <ComboBox Grid.Row="0" Grid.Column="0" ItemsSource="{Binding Methods}" SelectedItem="{Binding SelectedMethod}"
+                  IsEnabled="{Binding !SendRequestCommand.IsExecuting}" BorderThickness="1" CornerRadius="4" FontSize="12" MinWidth="100" Margin="0, 1, 0, 0" Classes="HttpMethodCollection" >
+            
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Converter={StaticResource EnumToStringConverter}}" />
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        
         <TextBox Grid.Row="0" Grid.Column="1" Watermark="URL" Text="{Binding RequestUrl}" BorderThickness="1" CornerRadius="4" FontSize="14" MaxHeight="32" IsEnabled="{Binding !SendRequestCommand.IsExecuting}" />
         <Button Grid.Row="0" Grid.Column="2" Command="{Binding SendRequestCommand}" Content="Send" BorderThickness="1" CornerRadius="4" Background="{StaticResource Accent}" Height="33" Padding="10,7" FontWeight="Bold" />
     </Grid>

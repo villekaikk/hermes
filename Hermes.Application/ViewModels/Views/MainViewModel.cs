@@ -8,9 +8,8 @@ namespace Hermes.Application.ViewModels.Views;
 
 public class MainViewModel : ReactiveObject
 {
-    private int _selectedIndex;
     private string _requestUrl = string.Empty;
-    private RequestMethodOption _selectedMethod = null!;
+    private RequestMethodOption _selectedMethod;
     private SendRequestCallback? _sendRequestCallback;
     private readonly IQueryParamChannel? _channel;
     private bool _eventHandlingOngoing; 
@@ -45,20 +44,7 @@ public class MainViewModel : ReactiveObject
         _channel?.NotifyQueryStringUpdated(queryParams);
     }
 
-    public int SelectedIndex
-    {
-        get => _selectedIndex;
-        set => this.RaiseAndSetIfChanged(ref _selectedIndex, value);
-    }
-
-    public IReadOnlyList<RequestMethodOption> Methods => [
-        RequestMethodOption.Get,
-        RequestMethodOption.Post,
-        RequestMethodOption.Put,
-        RequestMethodOption.Patch,
-        RequestMethodOption.Delete,
-        RequestMethodOption.Options
-    ];
+    public IReadOnlyList<RequestMethodOption> Methods { get; }
 
     public RequestMethodOption SelectedMethod
     {
@@ -87,13 +73,19 @@ public class MainViewModel : ReactiveObject
             _eventHandlingOngoing = false;
         }
     }
-    
-    public MainViewModel() { }
+
+    public MainViewModel()
+    {
+        Methods = Enum.GetValues<RequestMethodOption>().ToList();
+        SelectedMethod = RequestMethodOption.Get;
+    }
 
     public MainViewModel(IQueryParamChannel chl)
     {
         _channel = chl;
         _channel.QueryParamsUpdated += QueryParamsUpdatedEventHandler;
+        Methods = Enum.GetValues<RequestMethodOption>().ToList();
+        SelectedMethod = RequestMethodOption.Get;
         SendRequestCommand = ReactiveCommand.CreateFromTask(SendRequestAsync);
         SendRequestCommand.ThrownExceptions.Subscribe(ex => Console.WriteLine($"Exception thrown: {ex}"));
     }
