@@ -9,7 +9,7 @@ public static class DependencyInjection
 
     public static IServiceCollection AddInfrastructure(this IServiceCollection services)
     {
-        services.AddSingleton<IRequestExecutionService, RequestExecutionService>();
+        services.AddTransient<IRequestExecutionService, RequestExecutionService>();
         services.AddSingleton<IQueryParamChannel, QueryParamChannel>();
             
         return services;

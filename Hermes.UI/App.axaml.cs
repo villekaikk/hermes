@@ -37,6 +37,7 @@ public partial class App : Avalonia.Application
                 RxApp.MainThreadScheduler = AvaloniaScheduler.Instance;
       
                 services
+                    .AddHttpClient()
                     .AddInfrastructure()
                     .AddApplication()
                     .AddPresentation();
