@@ -5,16 +5,16 @@ namespace Hermes.Application.Utils;
 
 public static class QueryStringUtils
 {
-    public static List<QueryParam> ParseQueryParams(this string queryString)
+    public static List<Parameter> ParseQueryParams(this string queryString)
     {
-        List<QueryParam> paramsList = [];
+        List<Parameter> paramsList = [];
 
         try
         {
             var paramsCollection = HttpUtility.ParseQueryString(queryString);
             paramsList = paramsCollection.Cast<string>()
                 .Where(p => !string.IsNullOrWhiteSpace(p))
-                .Select(p => new QueryParam(p, paramsCollection[p] ?? string.Empty))
+                .Select(p => new Parameter(p, paramsCollection[p] ?? string.Empty))
                 .ToList();
         }
         catch (Exception)
@@ -25,7 +25,7 @@ public static class QueryStringUtils
         return paramsList;
     }
 
-    public static string ToQueryString(this IEnumerable<QueryParam> queryParams) 
+    public static string ToQueryString(this IEnumerable<Parameter> queryParams) 
         => string.Join("&", queryParams.Where(p => !string.IsNullOrWhiteSpace(p.Key))
             .Select(p => $"{p.Key}={p.Value}")
             .ToList());

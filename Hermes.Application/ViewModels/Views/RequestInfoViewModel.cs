@@ -20,19 +20,24 @@ public class RequestInfoViewModel : ReactiveObject
         {
             this.RaiseAndSetIfChanged(ref _parameters, value);
             if (!_eventHandlingOngoing)
-                _channel?.NotifyQueryParamsUpdated(_parameters.Select(p => new QueryParam(p.Key, p.Value)).ToList());
+                _channel?.NotifyQueryParamsUpdated(
+                    _parameters
+                        .Select(p => new Parameter(p.Key, p.Value))
+                        .ToList());
         }
     }
     
-    public IReadOnlyCollection<RequestParameter> ParameterList
+    public IReadOnlyCollection<Parameter> ParameterList
         => Parameters
             .Where(p => p.Active && !string.IsNullOrEmpty(p.Key) && !string.IsNullOrEmpty(p.Value))
-            .Select(p => p.Item as RequestParameter).ToList().AsReadOnly()!;
+            .Select(p => p.Item as Parameter)
+            .ToList()
+            .AsReadOnly()!;
     
-    public IReadOnlyCollection<RequestHeader> HeaderList
+    public IReadOnlyCollection<Header> HeaderList
         => Headers
             .Where(h => h.Active && !string.IsNullOrEmpty(h.Key) && !string.IsNullOrEmpty(h.Value))
-            .Select(h => h.Item as RequestHeader).ToList().AsReadOnly()!;
+            .Select(h => h.Item as Header).ToList().AsReadOnly()!;
 
     public ObservableCollection<ListOptionViewModel> Headers
     {
@@ -40,7 +45,7 @@ public class RequestInfoViewModel : ReactiveObject
         set => this.RaiseAndSetIfChanged(ref _headers, value);
     }
 
-    private void QueryStringUpdatedEventHandler(List<QueryParam> queryParams)
+    private void QueryStringUpdatedEventHandler(List<Parameter> queryParams)
     {
         try
         {
@@ -48,7 +53,7 @@ public class RequestInfoViewModel : ReactiveObject
             Parameters.Clear();
             if (queryParams.Count > 0)
             {
-                queryParams.ForEach(p => AddParam(new RequestParameter(p.Key, p.Value, true)));
+                queryParams.ForEach(p => AddParam(new Parameter(p.Key, p.Value, true)));
             }
 
             EnsureEmptyParam();
@@ -63,7 +68,7 @@ public class RequestInfoViewModel : ReactiveObject
     {
         if (Parameters.Count == 0 || !string.IsNullOrEmpty(Parameters.Last().Key))
         {
-            AddParam(RequestParameter.Empty);
+            AddParam(Parameter.Empty);
         }
     }
     
@@ -71,7 +76,7 @@ public class RequestInfoViewModel : ReactiveObject
     {
         if (Headers.Count == 0 || !string.IsNullOrEmpty(Headers.Last().Key))
         {
-            var newHeader = new ListOptionViewModel(RequestHeader.Empty);
+            var newHeader = new ListOptionViewModel(Header.Empty);
             newHeader.KeyChanged += EnsureEmptyHeader;
             Headers.Add(newHeader);
         }
@@ -81,12 +86,12 @@ public class RequestInfoViewModel : ReactiveObject
     {
         var queryParams = Parameters
             .Where(p => p.Active)
-            .Select(p => new QueryParam(p.Key, p.Value))
+            .Select(p => new Parameter(p.Key, p.Value))
             .ToList();
         _channel?.NotifyQueryParamsUpdated(queryParams);
     }
 
-    private void AddParam(RequestParameter param)
+    private void AddParam(Parameter param)
     {
         var newParam = new ListOptionViewModel(param);
         newParam.KeyChanged += EnsureEmptyParam;
@@ -96,9 +101,9 @@ public class RequestInfoViewModel : ReactiveObject
         Parameters.Add(newParam);
     }
 
-    private void AddHeader(RequestHeader requestHeader)
+    private void AddHeader(Header header)
     {
-        var newHeader = new ListOptionViewModel(requestHeader);
+        var newHeader = new ListOptionViewModel(header);
         newHeader.KeyChanged += EnsureEmptyHeader;
         Headers.Add(newHeader);
     }
@@ -108,7 +113,7 @@ public class RequestInfoViewModel : ReactiveObject
     {
         _channel = chl;
         _channel.QueryStringUpdated += QueryStringUpdatedEventHandler;
-        AddParam(RequestParameter.Empty);
-        AddHeader(RequestHeader.Empty);
+        AddParam(Parameter.Empty);
+        AddHeader(Header.Empty);
     }
 }

@@ -65,7 +65,7 @@ public class MainViewModel : ReactiveObject
     public void RegisterSendRequestCallback(SendRequestCallback sendRequestCallback) =>
         _sendRequestCallback = sendRequestCallback ?? throw new ArgumentNullException(nameof(sendRequestCallback));
 
-    private void QueryParamsUpdatedEventHandler(List<QueryParam> queryParams)
+    private void QueryParamsUpdatedEventHandler(List<Parameter> queryParams)
     {
         try
         {
@@ -86,7 +86,7 @@ public class MainViewModel : ReactiveObject
     
     public MainViewModel() { }
 
-    public MainViewModel(IQueryParamChannel chl, IQueryParamChannel channel, ReactiveCommand<Unit, Unit> sendRequestCommand)
+    public MainViewModel(IQueryParamChannel chl)
     {
         _channel = chl;
         _channel.QueryParamsUpdated += QueryParamsUpdatedEventHandler;
