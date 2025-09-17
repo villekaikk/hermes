@@ -25,8 +25,12 @@ public class MainViewModel : ReactiveObject
         set
         {
             this.RaiseAndSetIfChanged(ref _requestUrl, value);
-            if(_requestUrl.Contains('?') && !string.IsNullOrWhiteSpace(_requestUrl.Split('?')[1]))
-                UpdateQueryString(_requestUrl.Split('?')[1]);
+
+            _requestUrl
+                .Split('?')
+                .Skip(1)
+                .ToList()
+                .ForEach(UpdateQueryString);
         }
     }
     
