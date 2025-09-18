@@ -1,5 +1,6 @@
 using System.Collections.ObjectModel;
 using Hermes.Application.Interfaces;
+using Hermes.Application.Utils;
 using Hermes.Application.ViewModels.Models;
 using Hermes.Domain.Models;
 using ReactiveUI;
@@ -10,6 +11,7 @@ public class RequestInfoViewModel : ReactiveObject
 {
     private ObservableCollection<ListOptionViewModel> _parameters = [];
     private ObservableCollection<ListOptionViewModel> _headers  = [];
+    private readonly List<ListOptionViewModel> _defaultHeaders = [];
     private readonly IQueryParamChannel? _channel;
     private bool _eventHandlingOngoing;
 
@@ -29,14 +31,14 @@ public class RequestInfoViewModel : ReactiveObject
     
     public IReadOnlyCollection<Parameter> ParameterList
         => Parameters
-            .Where(p => p.Active && !string.IsNullOrEmpty(p.Key) && !string.IsNullOrEmpty(p.Value))
+            .Where(p => p.IsActive && !string.IsNullOrEmpty(p.Key) && !string.IsNullOrEmpty(p.Value))
             .Select(p => p.Item as Parameter)
             .ToList()
             .AsReadOnly()!;
     
     public IReadOnlyCollection<Header> HeaderList
         => Headers
-            .Where(h => h.Active && !string.IsNullOrEmpty(h.Key) && !string.IsNullOrEmpty(h.Value))
+            .Where(h => h.IsActive && !string.IsNullOrEmpty(h.Key) && !string.IsNullOrEmpty(h.Value))
             .Select(h => h.Item as Header).ToList().AsReadOnly()!;
 
     public ObservableCollection<ListOptionViewModel> Headers
@@ -66,26 +68,24 @@ public class RequestInfoViewModel : ReactiveObject
 
     private void EnsureEmptyParam()
     {
-        if (Parameters.Count == 0 || !string.IsNullOrEmpty(Parameters.Last().Key))
-        {
-            AddParam(Parameter.Empty);
-        }
+        if (Parameters.Count > 0 || string.IsNullOrEmpty(Parameters.Last().Key))
+            return;
+        
+        AddParam(Parameter.Empty);
     }
     
     private void EnsureEmptyHeader()
     {
-        if (Headers.Count == 0 || !string.IsNullOrEmpty(Headers.Last().Key))
-        {
-            var newHeader = new ListOptionViewModel(Header.Empty);
-            newHeader.KeyChanged += EnsureEmptyHeader;
-            Headers.Add(newHeader);
-        }
+        if (Headers.Count > 0 && string.IsNullOrEmpty(Headers.Last(h => !h.IsDefault).Key))
+            return;
+        
+        AddHeader(Header.Empty);
     }
 
     private void ParameterChanged()
     {
         var queryParams = Parameters
-            .Where(p => p.Active)
+            .Where(p => p.IsActive)
             .Select(p => new Parameter(p.Key, p.Value))
             .ToList();
         _channel?.NotifyQueryParamsUpdated(queryParams);
@@ -103,9 +103,22 @@ public class RequestInfoViewModel : ReactiveObject
 
     private void AddHeader(Header header)
     {
+        var realCount = Headers.Count(h => !h.IsDefault);
         var newHeader = new ListOptionViewModel(header);
         newHeader.KeyChanged += EnsureEmptyHeader;
+        Headers.RemoveAllAfter(realCount);   
         Headers.Add(newHeader);
+
+        if (realCount < 1) 
+            return;
+
+        AddDefaultHeaders();
+    }
+    
+    private void AddDefaultHeaders()
+    {
+        Headers.Add(new ListOptionViewModel(new Header("User-Agent", "HermesClient"), true, true));
+        Headers.Add(new ListOptionViewModel(new Header("Accept", "*/*"), true, true));
     }
 
     public RequestInfoViewModel() { }
@@ -115,5 +128,6 @@ public class RequestInfoViewModel : ReactiveObject
         _channel.QueryStringUpdated += QueryStringUpdatedEventHandler;
         AddParam(Parameter.Empty);
         AddHeader(Header.Empty);
+        AddDefaultHeaders();
     }
 }

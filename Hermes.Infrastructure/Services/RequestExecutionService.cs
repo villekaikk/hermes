@@ -7,8 +7,10 @@ public class RequestExecutionService(IHttpClientFactory clientFactory) : IReques
 {
     public async Task ExecuteRequestAsync(RequestOptions options, CancellationToken token)
     {
-        var client = clientFactory.CreateClient();
-        Console.WriteLine($"Sending {options.Method.Value} request to {options.RequestUrl} with {options.Headers.Count} headers and {options.Parameters.Count} parameters...");
+        var method = options.Method.ToString();
+        using var client = clientFactory.CreateClient();
+        using var message = new HttpRequestMessage();
+        Console.WriteLine($"Sending {options.Method} request to {options.RequestUrl} with {options.Headers.Count} headers and {options.Parameters.Count} parameters...");
         await Task.Delay(200, token);
         Console.WriteLine("Request sent");
     }

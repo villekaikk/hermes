@@ -76,8 +76,11 @@ public class MainViewModel : ReactiveObject
 
     public MainViewModel()
     {
+        // Design time ctor
         Methods = Enum.GetValues<RequestMethodOption>().ToList();
         SelectedMethod = RequestMethodOption.Get;
+        SendRequestCommand = ReactiveCommand.CreateFromTask(SendRequestAsync);
+        SendRequestCommand.ThrownExceptions.Subscribe(ex => Console.WriteLine($"Exception thrown: {ex}"));
     }
 
     public MainViewModel(IQueryParamChannel chl)
