@@ -1,6 +1,6 @@
 namespace Hermes.Domain.Models;
 
-public record Header(string Key, string Value, bool Active) : ListOption(Key, Value, Active)
+public record Header(string Key, string Value) : ListOption(Key, Value)
 {
-    public static Header Empty => new (string.Empty, string.Empty, true);
+    public static Header Empty => new (string.Empty, string.Empty);
 }

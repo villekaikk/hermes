@@ -53,7 +53,7 @@ public class RequestInfoViewModel : ReactiveObject
             Parameters.Clear();
             if (queryParams.Count > 0)
             {
-                queryParams.ForEach(p => AddParam(new Parameter(p.Key, p.Value, true)));
+                queryParams.ForEach(p => AddParam(new Parameter(p.Key, p.Value)));
             }
 
             EnsureEmptyParam();
@@ -91,9 +91,9 @@ public class RequestInfoViewModel : ReactiveObject
         _channel?.NotifyQueryParamsUpdated(queryParams);
     }
 
-    private void AddParam(Parameter param)
+    private void AddParam(Parameter param, bool isActive = true, bool isDefault = false)
     {
-        var newParam = new ListOptionViewModel(param);
+        var newParam = new ListOptionViewModel(param, isActive, isDefault);
         newParam.KeyChanged += EnsureEmptyParam;
         newParam.KeyChanged += ParameterChanged;
         newParam.ValueChanged += ParameterChanged;

@@ -18,11 +18,10 @@
     
     <Grid RowDefinitions="Auto" ColumnDefinitions="Auto, *, Auto" ColumnSpacing="5" >
         <ComboBox Grid.Row="0" Grid.Column="0" ItemsSource="{Binding Methods}" SelectedItem="{Binding SelectedMethod}"
-                  IsEnabled="{Binding !SendRequestCommand.IsExecuting}" BorderThickness="1" CornerRadius="4" FontSize="12" MinWidth="100" Margin="0, 1, 0, 0" Classes="HttpMethodCollection" >
-            
+                  IsEnabled="{Binding !SendRequestCommand.IsExecuting}" BorderThickness="1" CornerRadius="4" FontSize="14" MinWidth="100" Margin="0, 1, 0, 0" Classes="HttpMethodCollection" >
             <ComboBox.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding Converter={StaticResource EnumToStringConverter}}" />
+                    <TextBlock Text="{Binding Converter={StaticResource EnumToStringConverter}}" Margin="0, 2, 0, 0"/>
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>

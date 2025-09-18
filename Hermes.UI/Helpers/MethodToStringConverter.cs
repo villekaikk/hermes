@@ -11,7 +11,7 @@ public class EnumToStringConverter : IValueConverter
     {
         if (value is Enum enumValue)
         {
-            return enumValue.ToString().ToUpper();
+            return enumValue.ToString();
         }
 
         return string.Empty;
