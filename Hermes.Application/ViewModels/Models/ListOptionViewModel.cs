@@ -31,35 +31,35 @@ public partial class ListOptionViewModel : ReactiveObject
         }
     }
 
-    public bool Active
+    public bool IsActive
     {
-        get => _isActive;
+        get => _isIsActive;
         set
         {
-            this.RaiseAndSetIfChanged(ref _isActive, value);
+            this.RaiseAndSetIfChanged(ref _isIsActive, value);
             ActiveChanged?.Invoke();
         }
     }
     
-    public bool Default
+    public bool IsDefault
     {
         get => _isDefault;
-        set => this.RaiseAndSetIfChanged(ref _isDefault, value);
+        private init => this.RaiseAndSetIfChanged(ref _isDefault, value);
     }
 
     public ListOption Item { get; }
 
-    public ListOptionViewModel(ListOption listOption, bool isActive = true, bool isDefault = false)
+    public ListOptionViewModel(ListOption listOption, bool isIsActive = true, bool isDefault = false)
     {
         Key = listOption.Key;
         Value = listOption.Value;
-        Active = isActive;
-        Default = isDefault;
+        IsActive = isIsActive;
+        IsDefault = isDefault;
         Item = listOption;
     }
 
     private string _key = string.Empty!;
     private string _value  = string.Empty!;
-    private bool _isActive;
-    private bool _isDefault;
+    private bool _isIsActive;
+    private readonly bool _isDefault;
 }
