@@ -106,7 +106,7 @@ public class RequestInfoViewModel : ReactiveObject
         var realCount = Headers.Count(h => !h.IsDefault);
         var newHeader = new ListOptionViewModel(header);
         newHeader.KeyChanged += EnsureEmptyHeader;
-        Headers.RemoveAllAfter(realCount);   
+        Headers.RemoveAllFrom(realCount);   
         Headers.Add(newHeader);
 
         if (realCount < 1) 
