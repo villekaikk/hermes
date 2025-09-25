@@ -1,3 +1,4 @@
+using Hermes.Domain.Models;
 using ReactiveUI;
 
 namespace Hermes.Application.ViewModels.Views;
@@ -35,11 +36,14 @@ public class ResponseInfoViewModel : ReactiveObject
         set => this.RaiseAndSetIfChanged(ref _requestSucceed, value);
     }
 
-    public ResponseInfoViewModel()
+    public void DisplayResponse(Response response)
     {
-        
+        ResponseBody = response.Body;
+        ResponseStatusCode = response.StatusCode.ToString();
+        RequestSucceed = response.StatusCode < 400;
+        RequestExecutionTime = $"{response.ExecTime.Seconds}.{response.ExecTime.Milliseconds}s";
     }
-
+    
     private string _responseBody = "123asd";
     private string _responseStatusCode = "200 OK";
     private string _responseContentSize = "20 KB";

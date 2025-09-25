@@ -65,12 +65,13 @@ public class MainWindowViewModel : ReactiveObject
 
     private async Task ExecuteRequest(CancellationToken cancellationToken)
     {
-        var options = new RequestOptions(
+        var options = new Request(
             _mainViewModel.SelectedMethod,
             _mainViewModel.BaseUrl,
             _requestInfoViewModel.HeaderList,
             _requestInfoViewModel.ParameterList
         );
-        await _requestExecutionService!.ExecuteRequestAsync(options, cancellationToken);
+        var resp = await _requestExecutionService!.ExecuteRequestAsync(options, cancellationToken);
+        _responseInfoViewModel.DisplayResponse(resp);
     }
 }
