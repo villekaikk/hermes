@@ -4,5 +4,5 @@ namespace Hermes.Application.Interfaces;
 
 public interface IRequestExecutionService
 {
-    Task ExecuteRequestAsync(RequestOptions options, CancellationToken token);
+    Task<Response> ExecuteRequestAsync(Request req, CancellationToken token);
 }
